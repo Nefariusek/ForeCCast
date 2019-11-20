@@ -1,0 +1,42 @@
+{
+  "name": "foreccast",
+  "version": "1.0.0",
+  "description": "Weather Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --watch",
+    "build": "webpack --mode production",
+    "format": "prettier --ignore-path .gitignore --write \"./**/*.{js,json,scss,html}\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nefariusek/ForeCCast.git"
+  },
+  "keywords": [
+    "Weather",
+    "CodersCamp",
+    "JavaScript"
+  ],
+  "author": "Team Patryk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nefariusek/ForeCCast/issues"
+  },
+  "homepage": "https://github.com/Nefariusek/ForeCCast#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "eslint": "^6.1.0",
+    "file-loader": "^4.2.0",
+    "prettier": "1.18.2",
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.8.0"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.4.4"
+  }
+}
