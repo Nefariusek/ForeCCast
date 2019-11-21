@@ -1,9 +1,16 @@
-$font-stack: Stencil;
-$primary-color: red;
+$font-stack: helvetica;
+$primary-color: navy;
 $body-color: lightblue;
 
 body {
   background-color: $body-color;
-  font: 4em $font-stack;
+  font: 2em $font-stack;
   color: $primary-color;
+  overflow-x: hidden;
+}
+
+#page-header {
+  text-align: center;
+  font-size: 3em;
+  color: green;
 }
