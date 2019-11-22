@@ -1,13 +1,40 @@
 <!DOCTYPE html>
-<html lang="pl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>ForeCCast</title>
-  </head>
-  <body>
-    <div id="wrapper"><p>TEST SASS</p></div>
-    <script defer src="index.js"></script>
-  </body>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>ForeCCast</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="src/style.css">
+</head>
+
+<body>
+  <div id="page-wrapper">
+    <div class="mt-4">
+      <div id="page-header">ForeCCast</div>
+    </div>
+    <div id="content-wrapper" class="row d-flex justify-content-around mt-4">
+      <div class="time currency card col-3 p-2">
+        <div id="time-currency">id="time-currency"</div>
+      </div>
+      <div class="main-container col-5 ">
+        <div class="place card mb-3 p-2">
+          <div id="place">id="place"</div>
+        </div>
+        <div class="weather sun moon card p-2">
+          <div id="weather">id="weather"</div>
+          <div id="sun-moon">id="sun-moon"</div>
+        </div>
+      </div>
+      <div class="news card col-3 p-2">
+        <div id="news">id="news"</div>
+      </div>
+    </div>
+  </div>
+  <script defer src="index.js"></script>
+</body>
+
 </html>
