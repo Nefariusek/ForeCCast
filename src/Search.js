@@ -5,8 +5,12 @@ class Search {
     this._cities = new Cities();
     this._select = document.getElementById(selectID);
     this._input = document.getElementById(inputID);
+
     this._selectedCountry = defCountry;
     this._selectedCity = defCity;
+    this._selectedLat = 0;
+    this._selectedLng = 0;
+
     this._input.value = this._selectedCity;
     this._select.value = defCountry;
     this._countryCitiesNames = this._cities.getCountryCitiesNames(this._selectedCountry);
@@ -45,11 +49,11 @@ class Search {
   }
 
   getSelectedLng() {
-    return this._selectedCountry;
+    return this._selectedLat;
   }
 
   getSelectedLat() {
-    return this._selectedCity;
+    return this._selectedLng;
   }
   
 autocomplete() {
@@ -61,16 +65,12 @@ autocomplete() {
       currentFocus = -1;
       closeAllLists();
 
-      /*for each item in the array...*/
       this._countryCitiesNames.forEach(element => {
-        /*check if the item starts with the same letters as the text field value:*/
 
         if (element.substr(0, this._input.value.length).toUpperCase() == this._input.value.toUpperCase()) {
           
-          /*create a DIV element for each matching element:*/
           let sugestionsElementDiv = document.createElement("div");
 
-          /*make the matching letters bold:*/
           sugestionsElementDiv.innerHTML = "<strong>" + element.substr(0, this._input.value.length) + "</strong>";
           sugestionsElementDiv.innerHTML += element.substr(this._input.value.length);
 
@@ -91,7 +91,7 @@ autocomplete() {
         currentFocus++;
         console.log(this._sugestionsDiv.children[currentFocus]);
         addActive(this._sugestionsDiv.children[currentFocus]);
-      } else if (event.keyCode == 38) { //up
+      } else if (event.keyCode == 38) {
         currentFocus--;
         addActive(this._sugestionsDiv.children[currentFocus]);
       } else if (event.keyCode == 13) {
@@ -121,9 +121,12 @@ autocomplete() {
   }
 }
 /*execute a function when someone clicks in the document:*/
-// this._sugestionsDiv.addEventListener("click",  (event) => {
-//     closeAllLists();
-// });
+
+//Czy nie będzie przechwytywać wszysctkich kliknięć / klikac elementy pod lista propozycji?
+document.addEventListener("click",  (event) => {
+    if(event.target !== this._sugestionsDiv)
+    closeAllLists();
+}/*true*/);
 }
 
 }
