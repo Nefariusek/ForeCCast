@@ -1,19 +1,17 @@
 import Cities from './Cities';
 
 class Search {
-  constructor(selectID, inputID, defCity) {
+  constructor(formID, selectID, inputID, defCity) {
     this._cities = new Cities();
     this._select = document.getElementById(selectID);
     this._input = document.getElementById(inputID);
+    this._form = document.getElementById(formID);
 
     this._selectedCountry = defCity.country;
     this._selectedCity = defCity;
-    // this._selectedLat = 0;
-    // this._selectedLng = 0;
 
     this._input.value = this._selectedCity.name;
     this._countryCities = this._cities.getCountryCities(this._selectedCountry);
-    // this._countryCitiesNames = this._cities.getCountryCitiesNames(this._selectedCountry);
 
     this._sugestionsDiv = document.createElement("div");
     this._sugestionsDiv.setAttribute("id", "sugestion");
@@ -41,22 +39,10 @@ class Search {
     });
 }
 
-  // getSelectedCoutry() {
-  //   return this._selectedCountry;
-  // }
-
   getSelectedCity() {
     return this._selectedCity;
   }
 
-  // getSelectedLng() {
-  //   return this._selectedLat;
-  // }
-
-  // getSelectedLat() {
-  //   return this._selectedLng;
-  // }
-  
 autocomplete() {
       let currentFocus;
 
@@ -81,6 +67,7 @@ autocomplete() {
             this._input.value = sugestionsElementDiv.getElementsByTagName("input")[0].value;
             this._selectedCity = element;
             closeAllLists();
+
           });
           if(counter<10) {
            this._sugestionsDiv.appendChild(sugestionsElementDiv);
@@ -124,7 +111,6 @@ autocomplete() {
     this._sugestionsDiv.removeChild( this._sugestionsDiv.firstChild);
   }
 }
-/*execute a function when someone clicks in the document:*/
 
 //Czy nie będzie przechwytywać wszysctkich kliknięć / klikac elementy pod lista propozycji?
 document.addEventListener("click",  (event) => {

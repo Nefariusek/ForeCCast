@@ -15,11 +15,11 @@ class Weather {
         return this.lon=value;
     }
     //set coordinates value
-    getCoordinates() {
-        let latValue = document.getElementById('lat').value;
-        let lonValue = document.getElementById('lon').value;
-        this.setLat(latValue);
-        this.setLon(lonValue);
+    getCoordinates(lat, lng) {
+        // let latValue = document.getElementById('lat').value;
+        // let lonValue = document.getElementById('lon').value;
+        this.setLat(lat);
+        this.setLon(lng);
         return this.apiCall(this.setURL());
     }
     // set URL address for API call

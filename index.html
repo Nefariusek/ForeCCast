@@ -25,11 +25,11 @@
       <div class="main-container col-5 ">
         <div class="place card mb-3 p-2">
           <div id="place">  
-            <form autocomplete="off" id="searchForm">
+            <form autocomplete="off" id="searchForm" onsubmit="return false;">
               <select id="mySelect" required >
               </select>
               <div class="autocomplete">
-                <input id="myInput" type="text" name="myCountry" placeholder="City">
+                <input id="myInput" type="text" name="myCountry" placeholder="City" required>
               </div>
             </form>
           </div>
