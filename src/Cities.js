@@ -54,15 +54,15 @@ class Cities {
         return lng;
     }
 
-    getFindCity(city) {
-        let c = 0;
-        cities.forEach(element => {
-            if(city === element.name){
-                c = element.name;
-            }
-        });
-        return element;
-    }
+    // FindCity(city) {
+    //     let c = null;
+    //     cities.forEach(element => {
+    //         if(city === element.name){
+    //             c = element.name;
+    //         }
+    //     });
+    //     return c;
+    // }
     
 }
 

@@ -14,3 +14,37 @@ body {
   font-size: 3em;
   color: green;
 }
+
+#searchForm {
+  width: 20%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.autocomplete {
+  width: 70%;
+}
+
+#myInput {
+  font-size: 20px;
+  display: block;
+  width: 100%;
+}
+
+#mySelect{
+  font-size: 20px;
+  display: block;
+  width: 30%;
+}
+
+.sugestionItem {
+  font-size: 20px;
+  position: absolute;
+  color: grey;
+  background-color: white;
+}
+
+.sugestionActive {
+  background-color: lightgray;
+  color: black;
+}
