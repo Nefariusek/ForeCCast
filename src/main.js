@@ -14,7 +14,8 @@ let defCity = {
 
 const search = new Search("searchForm", "mySelect", "myInput", defCity);
 let city = search.getSelectedCity();
-// let country = 'pl';
+
+
 let language = 'pl';
 
 // Default current weather data
@@ -52,6 +53,10 @@ document.getElementById("myInput").addEventListener("keydown", function(event){
     if(event.keyCode === 13){
         reset();
     }
+})
+
+document.getElementById("sugestion").addEventListener("click", function(){
+        reset();
 })
 
 console.log('main.js ready to serve');
