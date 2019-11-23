@@ -8,6 +8,7 @@ class Cities {
         });
         
         this._cities=cities;
+        
     }
 
     getAllCountries() {

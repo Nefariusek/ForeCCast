@@ -1,24 +1,22 @@
 import Cities from './Cities';
 
 class Search {
-  constructor(selectID, inputID, defCountry = "PL", defCity = "Warsaw") {
+  constructor(selectID, inputID, defCity) {
     this._cities = new Cities();
     this._select = document.getElementById(selectID);
     this._input = document.getElementById(inputID);
 
-    // this._selectedCountry = defCountry;
-    this._selectedCity = null;
+    this._selectedCountry = defCity.country;
+    this._selectedCity = defCity;
     // this._selectedLat = 0;
     // this._selectedLng = 0;
 
-    this._input.value = this._selectedCity;
-    this._select.value = defCountry;
+    this._input.value = this._selectedCity.name;
     this._countryCities = this._cities.getCountryCities(this._selectedCountry);
     // this._countryCitiesNames = this._cities.getCountryCitiesNames(this._selectedCountry);
 
-
     this._sugestionsDiv = document.createElement("div");
-    this._sugestionsDiv.setAttribute("id", "sugestion");                  
+    this._sugestionsDiv.setAttribute("id", "sugestion");
     this._sugestionsDiv.setAttribute("class", "sugestionItem");
     this._input.parentNode.appendChild(this._sugestionsDiv);
   
@@ -96,7 +94,6 @@ autocomplete() {
   this._input.addEventListener("keydown", (event) => {
       if (event.keyCode == 40) {
         currentFocus++;
-        console.log(this._sugestionsDiv.children[currentFocus]);
         addActive(this._sugestionsDiv.children[currentFocus]);
       } else if (event.keyCode == 38) {
         currentFocus--;

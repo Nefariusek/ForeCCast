@@ -16,3 +16,38 @@ body {
   font-size: 3em;
   color: green;
 }
+
+
+#searchForm {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.autocomplete {
+  width: 80%;
+  font-size: 20px;
+}
+
+#myInput {
+  width: 100%;
+}
+
+#mySelect{
+  font-size: 20px;
+  width: 20%;
+}
+
+.sugestionItem {
+  font-size: 20px;
+  position: absolute;
+  color: grey;
+  background-color: white;
+  width: inherit;
+  z-index: 2;
+}
+
+.sugestionActive {
+  background-color: lightgray;
+  color: black;
+}
