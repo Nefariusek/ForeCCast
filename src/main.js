@@ -21,6 +21,7 @@ let language = 'pl';
 let weather = new Weather(city.lat, city.lng);
 weather.apiCall(weather.setURL());
 
+
 news.getNewsByCountry(city.country, language);
 sunTime.getSunsetSunrise(city.country, city.name); 
 weather.getCoordinates(city.lat, city.lng);

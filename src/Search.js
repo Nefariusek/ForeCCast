@@ -1,4 +1,5 @@
 import Cities from './Cities';
+import * as fullName from './ISO3166';
 
 class Search {
   constructor(formID, selectID, inputID, defCity) {
@@ -26,7 +27,7 @@ class Search {
     this._cities.getAllCountries().forEach(element => {
       let option = document.createElement("option");
       option.value = element;
-      option.text = element;
+      option.text = fullName.getFullCountryName(element);
       this._select.add(option);
     });
 
