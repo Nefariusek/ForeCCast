@@ -51,3 +51,25 @@ body {
   background-color: lightgray;
   color: black;
 }
+
+#news{
+  display: flex;
+  flex-wrap: wrap;
+  #newsImg{
+    position: relative;
+    width: 50%;
+    height: 50%;
+    img{
+      object-fit: cover;
+      margin: 10px;
+      width: 90%;
+      height: 90%;
+    }
+  }
+  #newsText{
+    position: relative;
+    width: 50%;
+    height: 50%;
+    font-size: 1rem;
+  }
+}

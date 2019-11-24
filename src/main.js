@@ -12,11 +12,10 @@ let defCity = {
     "lng": "21.01178"
 };
 
+
 const search = new Search("searchForm", "mySelect", "myInput", defCity);
 let city = search.getSelectedCity();
-
-
-let language = 'pl';
+let language = news.getLanguage();
 
 // Default current weather data
 let weather = new Weather(city.lat, city.lng);
