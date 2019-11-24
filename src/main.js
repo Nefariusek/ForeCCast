@@ -25,19 +25,11 @@ weather.apiCall(weather.setURL());
 
 news.getNewsByCountry(city.country, language);
 sunTime.getSunsetSunrise(city.country, city.name); 
-weather.getCoordinates(city.lat, city.lng);
 
 // // Show info when the user clicks the button
 // document.getElementById('getText')
 // .addEventListener('click', () => {
 //     sunTime.getSunsetSunrise(city.country, city.name); 
-// });
-
-
-//Current weather data for coordinates from user
-
-// document.getElementById('getCoordinates').addEventListener('click', () => {
-//     weather.getCoordinates(city.lat, city.lng);
 // });
 
 
