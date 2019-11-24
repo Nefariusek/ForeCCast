@@ -45,6 +45,8 @@ class Search {
   }
 
 autocomplete() {
+      let listLength = 0;
+      let maxListLength = 10;
       let currentFocus;
 
       this._input.addEventListener("input", () => {
@@ -53,11 +55,12 @@ autocomplete() {
       currentFocus = -1;
       closeAllLists();
       let counter = 0;
+      listLength = counter;
 
       this._countryCities.forEach(element => {
 
         if (element.name.substr(0, this._input.value.length).toUpperCase() == this._input.value.toUpperCase()) {
-          
+          if(counter<maxListLength) {
           let sugestionsElementDiv = document.createElement("div");
 
           sugestionsElementDiv.innerHTML = "<strong>" + element.name.substr(0, this._input.value.length) + "</strong>";
@@ -70,9 +73,13 @@ autocomplete() {
             closeAllLists();
 
           });
-          if(counter<10) {
-           this._sugestionsDiv.appendChild(sugestionsElementDiv);
+            this._sugestionsDiv.appendChild(sugestionsElementDiv);
+            sugestionsElementDiv.addEventListener("mouseover", () => {
+              removeActive();
+              sugestionsElementDiv.classList.add("sugestionActive");
+            });
            counter++;
+           listLength = counter;
           }
         }
       });
@@ -82,9 +89,11 @@ autocomplete() {
   this._input.addEventListener("keydown", (event) => {
       if (event.keyCode == 40) {
         currentFocus++;
+        if (currentFocus >= listLength) currentFocus = 0;
         addActive(this._sugestionsDiv.children[currentFocus]);
       } else if (event.keyCode == 38) {
         currentFocus--;
+        if (currentFocus < 0) currentFocus = (listLength - 1);
         addActive(this._sugestionsDiv.children[currentFocus]);
       } else if (event.keyCode == 13) {
         event.preventDefault();
@@ -97,8 +106,8 @@ autocomplete() {
   const addActive = (element) => {
     if (!element) return false;
     removeActive();
-    if (currentFocus >= this._sugestionsDiv.children.length) currentFocus = 0;
-    if (currentFocus < 0) currentFocus = (this._sugestionsDi.children.length - 1);
+    // if (currentFocus >= listLength) currentFocus = 0;
+    // if (currentFocus < 0) currentFocus = (listLength - 1);
     element.classList.add("sugestionActive");
   }
   const removeActive = () => {
@@ -118,6 +127,7 @@ document.addEventListener("click",  (event) => {
     if(event.target !== this._sugestionsDiv)
     closeAllLists();
 }/*true*/);
+
 }
 
 }
