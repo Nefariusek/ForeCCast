@@ -10,10 +10,11 @@ let language = 'pl';
 news.getNewsByCountry(country, language);
 
 let city = 'Wroclaw';
+let day = 0; // current day
 
 // Show info when the user clicks the button
 document.getElementById('getText').addEventListener('click', () => {
-  sunTime.getSunsetSunrise(city, country);
+  sunTime.getSunsetSunrise(city, country, day);
 });
 
 // Default current weather data
