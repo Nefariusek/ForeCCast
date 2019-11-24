@@ -10,7 +10,7 @@ let language = 'pl';
 news.getNewsByCountry(country, language);
 
 let city = 'Wroclaw';
-let day = 0; // current day
+let day = 0; // current day, available 0 to 6
 
 // Show info when the user clicks the button
 document.getElementById('getText').addEventListener('click', () => {
