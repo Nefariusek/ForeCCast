@@ -8,36 +8,45 @@
   <title>ForeCCast</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="src/style.css">
 </head>
 
-<body>
+<body id="test">
   <div id="page-wrapper">
     <div class="mt-4">
       <div id="page-header">ForeCCast</div>
     </div>
     <div id="content-wrapper" class="row d-flex justify-content-around mt-4">
 
-      <div class="time currency card col-3 p-2">
+      <div class="time currency card col-10 col-md-3 col-xl-3 p-2 mb-3">
         <div id="time-currency">id="time-currency"</div>
       </div>
 
-      <div class="main-container col-5 ">
+      <div class="main-container col-10 col-md-7 col-xl-5 mb-3">
         <div class="place card mb-3 p-2">
-          <div id="place">id="place"</div>
+          <div id="place">
+            <form autocomplete="off" id="searchForm" onsubmit="return false;">
+              <div class="input-group" id="input-group-country">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">Country</div>
+                </div>
+                <select id="mySelect" class="form-control bg-success btn-success" required>
+                </select>
+              </div>
+              <div class="autocomplete">
+                <div class="dropdown to-hide input-group" id="input-group-city">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">City</div>
+                  </div>
+                  <input class="form-control btn-success rounded-right" id="myInput" type="text" name="myCountry"
+                    required>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
         <div class="weather sun moon card p-2">
           <div id="weather">id="weather"</div>
-          <div style="border: 2px solid yellowgreen">
-            <div>
-              <p>Lat</p>
-            </div>
-            <input type="text" id="lat">
-            <div>
-              <p>Lon</p>
-            </div>
-            <input type="text" id="lon">
-            <div><button id="getCoordinates">Set lat / Set lon</button></div>
+          <div>
             <div id="sun-moon">
               <button class="btn btn-warning mr-4" id="getText">Astronomy Forecast</button>
               <div id="output"></div>
@@ -45,11 +54,14 @@
           </div>
         </div>
       </div>
-      <div class="news card col-3 p-2">
-          <div id="news">id="news"</div>
+      <div class="news card col-10 col-md-11 col-xl-3 p-2 mb-3">
+        <div id = "news">
+          <div id="newsImg"></div>
+          <div id="newsText">id="news"</div>
         </div>
+      </div>
     </div>
-    
+
     <script defer src="index.js"></script>
 </body>
 
