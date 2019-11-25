@@ -24,22 +24,27 @@ class News {
     return newsUrl;
   }
 
-  getNewsByCountry(newsUrl) {
-    console.log(newsUrl);
-
-    fetch(newsUrl)
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        console.log(data.totalResults);
-        if(!data.totalResults){
-          document.getElementById('newsImg').innerHTML = `<img>`;
-          document.getElementById('newsText').innerHTML = `<h1>No news at this moment</h1>`;
-        } else{
+getNewsByCountry(newsUrl) {
+  //console.log(newsUrl);
+  fetch(newsUrl)
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      //console.log(data.totalResults);
+      if(!data.totalResults){
+        console.log("we are out of news");
+        document.getElementById('newsImg').innerHTML = `<img>`;
+        document.getElementById('newsText').innerHTML = `<h1>No news at this moment</h1>`;
+      }else{
         let article = Math.floor(Math.random() * data.articles.length);
         let title = data.articles[article].title;
+        let articleUrl = data.articles[article].url;
+        let description = data.articles[article].description;
         let imgUrl = data.articles[article].urlToImage;
-        document.getElementById('newsText').innerHTML = `${title}`;
+        document.getElementById('news').addEventListener('click', () => {
+          window.open(`${articleUrl}`); 
+        });
+        document.getElementById('newsText').innerHTML = `<h3>${title}</h3><p>${description}</p>`;
         if (!imgUrl) {
           imgUrl = './src/news_img/news.jpg';
         }
