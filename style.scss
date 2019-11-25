@@ -89,21 +89,21 @@ body {
   height: auto;
 }
 
-#news{
+#news {
   display: flex;
   flex-wrap: wrap;
-  #newsImg{
+  #newsImg {
     position: relative;
     width: 50%;
     height: 50%;
-    img{
+    img {
       object-fit: cover;
       margin: 10px;
       width: 90%;
       height: 90%;
     }
   }
-  #newsText{
+  #newsText {
     position: relative;
     width: 50%;
     height: 50%;
