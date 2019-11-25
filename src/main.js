@@ -4,7 +4,7 @@ import Weather from './weather';
 import Search from './Search';
 import News from './news'
 import {initCurrency, getConvertedCurrency} from './currency'
-import {TimeInPlace, getTimeZone} from './time'
+import {TimeInPlace, /*getTimeZone*/} from './time'
 
 let defCity = {
     "country": "PL",
