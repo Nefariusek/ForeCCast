@@ -15,7 +15,13 @@ let defCity = {
 const search = new Search("searchForm", "mySelect", "myInput", defCity);
 let city = search.getSelectedCity();
 let news = new News(city.country, 'en');
+let city = 'Wroclaw';
+let day = 0; // current day, available 0 to 6
 
+// Show info when the user clicks the button
+document.getElementById('getText').addEventListener('click', () => {
+  sunTime.getSunsetSunrise(city, country, day);
+});
 
 // Default current weather data
 let weather = new Weather(city.lat, city.lng);
