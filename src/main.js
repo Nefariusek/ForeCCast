@@ -2,7 +2,7 @@ import '../style.scss';
 import * as news from './news';
 import * as sunTime from './sunsetSunriseTime';
 import Weather from './weather';
-import {getCurrency, getTimeZone} from './currency.js'
+import {initCurrency, getTimeZone, getConvertedCurrency} from './currency.js'
 
 let country = 'pl';
 let language = 'pl';
@@ -29,5 +29,9 @@ document.getElementById('getCoordinates').addEventListener('click', () => {
 
 
 console.log('main.js ready to serve');
-getCurrency('CN');
-getTimeZone('CN');
+
+
+const c = initCurrency('de');
+c.then(res => res.printInConsole());
+getConvertedCurrency('pln','eur');
+getTimeZone('DE');
