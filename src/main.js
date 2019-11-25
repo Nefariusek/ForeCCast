@@ -11,8 +11,6 @@ let defCity = {
     "lng": "21.01178"
 };
 
-let day = 0; // current day, available 0 to 6
-
 const search = new Search("searchForm", "mySelect", "myInput", defCity);
 let city = search.getSelectedCity();
 let news = new News(city.country, 'en');

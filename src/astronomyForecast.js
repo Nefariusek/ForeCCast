@@ -1,6 +1,3 @@
-// Show info when the user clicks the button
-// document.getElementById('getText').addEventListener('click', getSunsetSunrise);
-
 class AstronomyForecast {
   constructor(city, day) {
     this.city = city;
@@ -16,9 +13,10 @@ class AstronomyForecast {
   }
 
   getCity(city, day) {
+    console.log('hello');
     this.setCity(city);
     this.setDay(day);
-    return this.getNewsByCountry(this.setUrl());
+    return this.getAstronomyForecast(this.setUrl());
   }
 
   setUrl() {
@@ -32,8 +30,8 @@ class AstronomyForecast {
       '&app_code=' +
       appCode +
       '&product=forecast_astronomy' +
-      '&name=' +
-      this.city;
+      '&name='+ this.city;
+      // this.city;
     return Link;
   }
 
