@@ -9,12 +9,12 @@ let language = 'pl';
 //console.log(country,language);
 news.getNewsByCountry(country, language);
 
-let city = 'Walbrzych';
+let city = 'Wroclaw';
+let day = 0; // current day, available 0 to 6
 
 // Show info when the user clicks the button
-document.getElementById('getText')
-.addEventListener('click', () => {
-    sunTime.getSunsetSunrise(country, city); 
+document.getElementById('getText').addEventListener('click', () => {
+  sunTime.getSunsetSunrise(city, country, day);
 });
 
 // Default current weather data
@@ -23,8 +23,7 @@ weather.apiCall(weather.setURL());
 //Current weather data for coordinates from user
 
 document.getElementById('getCoordinates').addEventListener('click', () => {
-    weather.getCoordinates();
+  weather.getCoordinates();
 });
-
 
 console.log('main.js ready to serve');
