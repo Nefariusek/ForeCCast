@@ -52,7 +52,7 @@ export class Currency{
    }
 }
 
-async function getConvertedCurrency(cCodeFrom, cCodeTo, data = '2018-02-09'){
+async function getConvertedCurrency(cCodeFrom, cCodeTo, data = '2019-11-21'){
   const url = requestURLConvert+ data + '?format=json&to=' + cCodeTo + '&from='+ cCodeFrom + '&amount=' + 1;
   const convertedCurrency = await fetch(url, apiReq)
   .then(response => { return response.json() })
@@ -74,12 +74,5 @@ async function initCurrency(countryCode){
 }
 
 
-async function getTimeZone(countryCode){
-    const timeZone= await fetch(requestURL+countryCode)
-    .then(function(res){ if(res.status === 200) return res.json(); })
-    .then(function(d){ console.log(d); return d.timezones})
-    .catch(() => { return 'none';});
-    console.log(`Time zone: ${timeZone}`);
- }
 
-export {getTimeZone, getConvertedCurrency, initCurrency}
+export {getConvertedCurrency, initCurrency}
