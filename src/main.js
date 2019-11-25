@@ -1,9 +1,8 @@
 import '../style.scss';
-import * as news from './news';
 import * as sunTime from './sunsetSunriseTime';
 import Weather from './weather';
 import Search from './Search';
-
+import News from './news'
 
 let defCity = {
     "country": "PL",
@@ -12,18 +11,17 @@ let defCity = {
     "lng": "21.01178"
 };
 
+
 const search = new Search("searchForm", "mySelect", "myInput", defCity);
 let city = search.getSelectedCity();
+let news = new News(city.country, 'en');
 
-
-let language = 'pl';
 
 // Default current weather data
 let weather = new Weather(city.lat, city.lng);
 weather.apiCall(weather.setURL());
 
-
-news.getNewsByCountry(city.country, language);
+news.getNewsByCountry(news.setNewsUrl());
 sunTime.getSunsetSunrise(city.country, city.name); 
 
 // // Show info when the user clicks the button
@@ -36,7 +34,7 @@ sunTime.getSunsetSunrise(city.country, city.name);
 //reset
 function reset() {
     city = search.getSelectedCity();
-    news.getNewsByCountry(city.country, language);
+    news.getCountry(city.country, 'en');
     sunTime.getSunsetSunrise(city.country, city.name); 
     weather.getCoordinates(city.lat, city.lng);
 }
