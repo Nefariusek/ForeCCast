@@ -1,14 +1,13 @@
 $font-stack: helvetica;
 $primary-color: navy;
 $body-color: lightblue;
-$bg-image: url(./src/bg_img/clear.jpg);
 
 body {
   background-color: $body-color;
-  background-image: $bg-image;
   font: 2em $font-stack;
   color: $primary-color;
   overflow-x: hidden;
+  min-width: 580px;
 }
 
 #page-header {
@@ -17,39 +16,77 @@ body {
   color: green;
 }
 
-
 #searchForm {
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-around;
 }
 
 .autocomplete {
-  width: 75%;
+  width: 50%;
   font-size: 20px;
 }
 
 #myInput {
-  width: 100%;
+  position: relative;
+  font-size: 20px;
+  width: calc(100% - 54px);
+  height: 44px;
+  z-index: 2;
 }
 
-#mySelect{
+#myInput:focus {
+  background-color: #145222;
+  color: white;
+}
+
+#mySelect {
+  position: relative;
   font-size: 20px;
-  width: 25%;
+  width: 40%;
+  height: 44px;
+  z-index: 2;
+}
+
+#input-group-country {
+  width: 48%;
+}
+
+.sugestionItem>div {
+  padding: 3px 14px 2px 14px;
+  color: lightgray;
+  background-color: #145222;
+}
+
+.to-hide {
+  height: 0;
 }
 
 .sugestionItem {
   font-size: 20px;
-  position: absolute;
-  color: grey;
-  background-color: white;
-  width: inherit;
-  z-index: 2;
+  position: relative;
+  top: -2px;
+  left: 52px;
+  border: darkgray 1px solid;
+  z-index: 1;
 }
 
-.sugestionActive {
-  background-color: lightgray;
-  color: black;
+#sugestionActive {
+  background-color: #208638;
+  color: white;
+}
+
+.card {
+  box-shadow: 5px 5px 50px 14px #000000;
+}
+
+.main-container {
+  height: inherit;
+  padding: 0;
+}
+
+.weather {
+  height: auto;
 }
 
 #news{
