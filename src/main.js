@@ -53,7 +53,9 @@ getUserLocation()
 function reset(city) {
     news.getCountry(city.country, 'en');
     weather.getCoordinates(city.lat, city.lng);
+    forecast.getCoordinates(city.lat, city.lng);
     astronomyForecast.getCity(city.name, 0);
+    
 }
 
 document.getElementById("myInput").addEventListener("keydown", function(event){

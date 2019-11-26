@@ -21,12 +21,13 @@ class Forecast {
     getCoordinates(lat, lng) {
         this.setLat(lat);
         this.setLon(lng);
+        this.forecastConditions.innerHTML = '';
         return this.apiCall(this.setURL());
     }
     // set URL address for API call
     setURL (){
-        let weatherApiURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${this.lat}&lon=${this.lon}&units=metric&APPID=f051a3a6eaeb0d3041fa073c40a73a0c`;
-        return weatherApiURL;
+        let forecastApiURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${this.lat}&lon=${this.lon}&units=metric&APPID=f051a3a6eaeb0d3041fa073c40a73a0c`;
+        return forecastApiURL;
     }
 
     getForecast(array) {
@@ -75,7 +76,7 @@ class Forecast {
             divWindDirection.className = `windDirection`;
             divWindDirection.innerHTML = `<img style = "width:15%; transform:rotate(${array[i].wind.deg}deg);" src='./src/wind_arrow/arrow.png'>`
             divDay.insertBefore(divWindDirection, null);
-            forecastConditions.insertBefore(divDay, null);
+            forecastConditions.appendChild(divDay);
 
         }
     }
@@ -87,7 +88,7 @@ class Forecast {
         fetch(setURL)
         .then(res => res.json())
         .then(data => { 
-            const array = data.list;
+            let array = data.list;
             console.log(array);
             this.getForecast(array);
            
