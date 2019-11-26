@@ -4,6 +4,7 @@ class News {
   constructor(country, language) {
     this.country = country;
     this.language = language;
+    this.divNews = document.getElementById('news');
   }
 
   setLanguage(language) {
@@ -17,8 +18,9 @@ class News {
   getCountry(country, language) {
     this.setCountry(country);
     this.setLanguage(language);
+    this.divNews.innerHTML = '';
     return this.getNewsByCountry(this.setNewsUrl());
-}
+  }
 
   setNewsUrl() {
     let newsApiKey = '7c4d2ae8384c47ffbfecf1790c38d409';
@@ -26,32 +28,62 @@ class News {
     return newsUrl;
   }
 
+  newsClick(articleUrl){
+    console.log('Akcja reakcja');
+    window.open(`${articleUrl}`); 
+  }
+
+  getNews(newsArr){
+
+    if(!newsArr.totalResults){
+      console.log("we are out of news");
+      this.divNews.innerHTML = `<h1>No news at this moment</h1>`;
+    }else{
+      let divNewsImg;
+      let divNewsText;
+      let divNewsBox;
+      for(let i = 0; i < 5; i++){
+        let article = i; //Math.floor(Math.random() * newsArr.articles.length);
+        let title = newsArr.articles[article].title;
+        let description = newsArr.articles[article].description;
+        let imgUrl = newsArr.articles[article].urlToImage;
+        let articleUrl = newsArr.articles[article].url;
+
+        divNewsBox = document.createElement('div');
+        divNewsBox.className = 'news';
+        divNewsBox.addEventListener("click", () => {   
+          console.log('Akcja reakcja');
+          window.open(`${articleUrl}`); 
+        });
+        console.log("Action listener created" + i);
+        if(!imgUrl){
+          imgUrl=imgUrlSrc;
+        }
+        divNewsImg = document.createElement('div');
+        divNewsImg.className = 'newsImg';
+        divNewsImg.innerHTML = `<img src="${imgUrl}">`;
+        divNewsBox.insertBefore(divNewsImg, null);
+        if(!title){
+          title = " ";
+        }
+        if(!description){
+          description = " ";
+        }
+        divNewsText = document.createElement('div');
+        divNewsText.className = 'newsText';
+        divNewsText.innerHTML = `<h3>${title}</h3><p>${description}</p>`
+        divNewsBox.insertBefore(divNewsText, null);
+        this.divNews.appendChild(divNewsBox);
+      }
+    }
+  }
+  
 getNewsByCountry(newsUrl) {
-  //console.log(newsUrl);
   fetch(newsUrl)
     .then(res => res.json())
     .then(data => {
-      console.log(data);
-      //console.log(data.totalResults);
-      if(!data.totalResults){
-        console.log("we are out of news");
-        document.getElementById('newsImg').innerHTML = `<img>`;
-        document.getElementById('newsText').innerHTML = `<h1>No news at this moment</h1>`;
-      }else{
-        let article = Math.floor(Math.random() * data.articles.length);
-        let title = data.articles[article].title;
-        let articleUrl = data.articles[article].url;
-        let description = data.articles[article].description;
-        let imgUrl = data.articles[article].urlToImage;
-        document.getElementById('news').addEventListener('click', () => {
-          window.open(`${articleUrl}`); 
-        });
-        document.getElementById('newsText').innerHTML = `<h3>${title}</h3><p>${description}</p>`;
-        if (!imgUrl) {
-          imgUrl = imgUrlSrc;
-        }
-        document.getElementById('newsImg').innerHTML = `<img src="${imgUrl}">`;
-      }
+      let newsArr = data;
+      this.getNews(newsArr);
     });
   }
 }

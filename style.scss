@@ -99,14 +99,15 @@ body {
   height: auto;
 }
 
-#news {
+.news {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+  border: 2px solid gray;
 
-  #newsImg {
+  .newsImg {
     position: relative;
     width: 100%;
 
@@ -120,7 +121,7 @@ body {
     }
   }
 
-  #newsText {
+  .newsText {
     position: relative;
     text-align: center;
     width: 90%;
