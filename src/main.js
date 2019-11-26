@@ -1,8 +1,8 @@
 import '../style.scss';
-import * as sunTime from './sunsetSunriseTime';
 import Weather from './weather';
 import Search from './Search';
 import News from './news'
+import AstronomyForecast from './astronomyForecast.js';
 import {initCurrency, getConvertedCurrency} from './currency'
 import {TimeInPlace, /*getTimeZone*/} from './time'
 
@@ -13,29 +13,30 @@ let defCity = {
     "lng": "21.01178"
 };
 
-
 const search = new Search("searchForm", "mySelect", "myInput", defCity);
 let city = search.getSelectedCity();
 let news = new News(city.country, 'en');
-let day = 0; // current day, available 0 to 6
-
-// Show info when the user clicks the button
-document.getElementById('getText').addEventListener('click', () => {
-  sunTime.getSunsetSunrise(city.name, city.country, day);
-});
+let astronomyForecast = new AstronomyForecast(city.name, 0);
 
 // Default current weather data
 let weather = new Weather(city.lat, city.lng);
 weather.apiCall(weather.setURL());
 
 news.getNewsByCountry(news.setNewsUrl());
+astronomyForecast.getAstronomyForecast(astronomyForecast.setUrl());
+// // Show info when the user clicks the button
+// document.getElementById('getText')
+// .addEventListener('click', () => {
+//     sunTime.getSunsetSunrise(city.country, city.name); 
+// });
+
 
 //reset
 function reset() {
     city = search.getSelectedCity();
     news.getCountry(city.country, 'en');
-    sunTime.getSunsetSunrise(city.country, city.name); 
     weather.getCoordinates(city.lat, city.lng);
+    astronomyForecast.getCity(city.name, 0);
 }
 
 document.getElementById("myInput").addEventListener("keydown", function(event){
