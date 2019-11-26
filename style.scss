@@ -6,14 +6,18 @@ body {
   background-color: $body-color;
   font: 2em $font-stack;
   color: $primary-color;
-  overflow-x: hidden;
-  min-width: 580px;
 }
 
 #page-header {
   text-align: center;
   font-size: 3em;
   color: green;
+}
+
+#content-wrapper {
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 #searchForm {
@@ -76,8 +80,14 @@ body {
   color: white;
 }
 
+#page-header img {
+  filter: drop-shadow(5px 5px 50px #000000);
+  max-width: 90%;
+}
+
 .card {
   box-shadow: 5px 5px 50px 14px #000000;
+  background-color: rgba(163, 163, 163, 0.75);
 }
 
 .main-container {
@@ -95,9 +105,11 @@ body {
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+
   #newsImg {
     position: relative;
     width: 100%;
+
     img {
       display: block;
       margin-left: auto;
@@ -107,10 +119,15 @@ body {
       height: 90%;
     }
   }
+
   #newsText {
     position: relative;
     text-align: center;
     width: 90%;
     font-size: 1rem;
   }
+}
+
+#sun-moon h1 {
+  color: #ff9317;
 }

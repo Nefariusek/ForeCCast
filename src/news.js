@@ -1,3 +1,5 @@
+import imgUrlSrc from '../src/news_img/news.jpg';
+
 class News {
   constructor(country, language) {
     this.country = country;
@@ -46,7 +48,7 @@ getNewsByCountry(newsUrl) {
         });
         document.getElementById('newsText').innerHTML = `<h3>${title}</h3><p>${description}</p>`;
         if (!imgUrl) {
-          imgUrl = './src/news_img/news.jpg';
+          imgUrl = imgUrlSrc;
         }
         document.getElementById('newsImg').innerHTML = `<img src="${imgUrl}">`;
       }
