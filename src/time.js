@@ -44,6 +44,15 @@ export class TimeInPlace {
         this.inOtherPlace.minutes = parseInt(formattedTime.slice(3,5), 10);
         this.inOtherPlace.seconds = parseInt(formattedTime.slice(7), 10);
     }
+    
+    insertTime(wrap){
+        wrap.innerHTML = `<h3>Time:</h3>
+        ${(this.currentTime.hours < 10)? '0' + this.currentTime.hours : this.currentTime.hours }:
+        ${(this.currentTime.minutes < 10)? '0' + this.currentTime.minutes : this.currentTime.minutes}
+        <h3>Time in searching city:</h3>
+        ${(this.inOtherPlace.hours < 10) ? '0' + this.inOtherPlace.hours : this.inOtherPlace.hours }:
+        ${(this.inOtherPlace.minutes < 10)? '0' + this.inOtherPlace.minutes : this.inOtherPlace.minutes}`
+    }
     printInConsole(){
         console.log('Current time: ', this.currentTime);
         console.log('Time in other place:', this.inOtherPlace);
