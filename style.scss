@@ -131,3 +131,24 @@ body {
 #sun-moon h1 {
   color: #ff9317;
 }
+
+
+#forecast {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
+  border: 1px solid green;
+  
+}
+.date, .icon, .description, .temp, .pressure, .humidity, .wind, .windDirection{
+  width: auto;
+  font-size: 1rem;
+  border: 1px solid green;
+}
+
+.day{
+  border: 1px solid green;
+  display: flex;
+  align-items: center;
+}
