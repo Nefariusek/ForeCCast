@@ -1,3 +1,14 @@
+import clearSrc from '../src/bg_img/clear.jpg';
+//import drizzleSrc from '../src/bg_img/drizzle.jpg';
+import dustSrc from '../src/bg_img/dust.jpg';
+import few_cloudsSrc from '../src/bg_img/few_clouds.jpg';
+import fogSrc from '../src/bg_img/fog.jpg';
+import overcast_cloudsSrc from '../src/bg_img/overcast_clouds.jpg';
+import rainSrc from '../src/bg_img/rain.jpg';
+import snowSrc from '../src/bg_img/snow.jpg';
+import thunderstormSrc from '../src/bg_img/thunderstorm.jpg';
+import tornadoSrc from '../src/bg_img/tornado.jpg';
+
 const weatherConditions = document.querySelector('#weather');
 const backgroundChange = document.querySelector('body');
 
@@ -5,7 +16,7 @@ class Weather {
     constructor (lat, lon){
         this.lat = lat;
         this.lon = lon;
-        this.backgroundPicture = './src/bg_img/clear.jpg';
+        this.backgroundPicture = clearSrc;
         
     }
     //set lat value
@@ -20,37 +31,37 @@ class Weather {
     setBackgroundPicture (weatherConditionId) {
         switch (weatherConditionId){
             case 200:
-                this.backgroundPicture = './src/bg_img/thunderstorm.jpg';
+                this.backgroundPicture = thunderstormSrc;
                 break;
             case 300:
-                this.backgroundPicture = './src/bg_img/thunderstorm.jpg';
+                this.backgroundPicture = thunderstormSrc;
                 break;
             case 500:
-                this.backgroundPicture = './src/bg_img/rain.jpg';
+                this.backgroundPicture = rainSrc;
                 break;
             case weatherConditionId>=600 && weatherConditionId<=622:
-                this.backgroundPicture = './src/bg_img/snow.jpg';
+                this.backgroundPicture = snowSrc;
                 break;
             case 741:
-                this.backgroundPicture = './src/bg_img/fog.jpg';
+                this.backgroundPicture = fogSrc;
                 break;
             case 800:
-                this.backgroundPicture = './src/bg_img/clear.jpg';
+                this.backgroundPicture = clearSrc;
                 break;
             case 801:
-                this.backgroundPicture = './src/bg_img/few_clouds.jpg';
+                this.backgroundPicture = few_cloudsSrc;
                 break;
             case 781:
-                this.backgroundPicture = './src/bg_img/tornado.jpg';
+                this.backgroundPicture = tornadoSrc;
                 break;
             case 761:
-                this.backgroundPicture = './src/bg_img/dust.jpg';
+                this.backgroundPicture = dustSrc;
                 break;
             case 804:
-                this.backgroundPicture = './src/bg_img/overcast_clouds.jpg';
+                this.backgroundPicture = overcast_cloudsSrc;
                 break;
             default:
-                this.backgroundPicture =  './src/bg_img/clear.jpg';
+                this.backgroundPicture =  clearSrc;
                 break;
         }
 
