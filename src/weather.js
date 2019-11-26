@@ -107,9 +107,8 @@ class Weather {
            `;
            backgroundChange.style.background = `url(${this.setBackgroundPicture(data.weather[0].id)})`;
         })
-        
-    }
 
+    }
 }
 
 export default Weather;

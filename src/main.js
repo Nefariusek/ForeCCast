@@ -4,7 +4,8 @@ import Search from './Search';
 import News from './news'
 import AstronomyForecast from './astronomyForecast.js';
 import {initCurrency, getConvertedCurrency} from './currency'
-import {TimeInPlace, /*getTimeZone*/} from './time'
+import {TimeInPlace, getTimeZone} from './time'
+import {getUserLocation} from './userLocation'
 
 let defCity = {
     "country": "PL",
@@ -14,6 +15,7 @@ let defCity = {
 };
 
 const search = new Search("searchForm", "mySelect", "myInput", defCity);
+
 let city = search.getSelectedCity();
 let news = new News(city.country, 'en');
 let astronomyForecast = new AstronomyForecast(city.name, 0);
@@ -30,10 +32,20 @@ astronomyForecast.getAstronomyForecast(astronomyForecast.setUrl());
 //     sunTime.getSunsetSunrise(city.country, city.name); 
 // });
 
+getUserLocation()
+    .then((data) => {
+        let c = search.getCityByName(...data);
+        if(c !== null) {
+            search.setCity(c);
+            city = c;
+            reset(city);
+        }
+    })
+    .catch((err) => {
+    });
 
 //reset
-function reset() {
-    city = search.getSelectedCity();
+function reset(city) {
     news.getCountry(city.country, 'en');
     weather.getCoordinates(city.lat, city.lng);
     astronomyForecast.getCity(city.name, 0);
@@ -41,16 +53,15 @@ function reset() {
 
 document.getElementById("myInput").addEventListener("keydown", function(event){
     if(event.keyCode === 13){
-        reset();
+        city = search.getSelectedCity();
+        reset(city);
     }
 })
 
 document.getElementById("sugestion").addEventListener("click", function(){
-        reset();
+    city = search.getSelectedCity();
+    reset(city);
 })
-
-console.log('main.js ready to serve');
-
 
 function insertCurrency(warp,cName,cCode,cSymbol,convertedC){
     wrap.innerHTML = `<h3>Currency in searching city:</h3>
