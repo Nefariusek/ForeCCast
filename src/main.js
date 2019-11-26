@@ -6,6 +6,7 @@ import AstronomyForecast from './astronomyForecast.js';
 import {initCurrency, getConvertedCurrency} from './currency'
 import {TimeInPlace, /*getTimeZone*/} from './time'
 import {getUserLocation} from './userLocation'
+import Forecast from './forecast';
 
 let defCity = {
     "country": "PL",
@@ -23,8 +24,12 @@ let astronomyForecast = new AstronomyForecast(city.name, 0);
 let weather = new Weather(city.lat, city.lng);
 weather.apiCall(weather.setURL());
 
+let forecast = new Forecast (city.lat, city.lng);
+forecast.apiCall(forecast.setURL());
+
 news.getNewsByCountry(news.setNewsUrl());
 astronomyForecast.getAstronomyForecast(astronomyForecast.setUrl());
+
 // // Show info when the user clicks the button
 // document.getElementById('getText')
 // .addEventListener('click', () => {
@@ -47,7 +52,9 @@ getUserLocation()
 function reset(city) {
     news.getCountry(city.country, 'en');
     weather.getCoordinates(city.lat, city.lng);
+    forecast.getCoordinates(city.lat, city.lng);
     astronomyForecast.getCity(city.name, 0);
+    
 }
 
 document.getElementById("myInput").addEventListener("keydown", function(event){

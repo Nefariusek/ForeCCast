@@ -1,5 +1,5 @@
 import clearSrc from '../src/bg_img/clear.jpg';
-//import drizzleSrc from '../src/bg_img/drizzle.jpg';
+import drizzleSrc from '../src/bg_img/drizzle.jpg';
 import dustSrc from '../src/bg_img/dust.jpg';
 import few_cloudsSrc from '../src/bg_img/few_clouds.jpg';
 import fogSrc from '../src/bg_img/fog.jpg';
@@ -30,19 +30,19 @@ class Weather {
     //background picture change
     setBackgroundPicture (weatherConditionId) {
         switch (weatherConditionId){
-            case 200:
+            case weatherConditionId>=200 && weatherConditionId<=232:
                 this.backgroundPicture = thunderstormSrc;
                 break;
-            case 300:
-                this.backgroundPicture = thunderstormSrc;
+            case weatherConditionId>=300 && weatherConditionId<=321:
+                this.backgroundPicture = drizzleSrc;
                 break;
-            case 500:
+            case weatherConditionId>=500 && weatherConditionId<=531:
                 this.backgroundPicture = rainSrc;
                 break;
             case weatherConditionId>=600 && weatherConditionId<=622:
                 this.backgroundPicture = snowSrc;
                 break;
-            case 741:
+            case 701 || 711|| 721 || 741:
                 this.backgroundPicture = fogSrc;
                 break;
             case 800:
@@ -51,13 +51,13 @@ class Weather {
             case 801:
                 this.backgroundPicture = few_cloudsSrc;
                 break;
-            case 781:
+            case 781 || 771 :
                 this.backgroundPicture = tornadoSrc;
                 break;
-            case 761:
+            case 761 || 751 || 731 :
                 this.backgroundPicture = dustSrc;
                 break;
-            case 804:
+            case weatherConditionId>801 && weatherConditionId<=804:
                 this.backgroundPicture = overcast_cloudsSrc;
                 break;
             default:
@@ -99,11 +99,12 @@ class Weather {
         .then(res => res.json())
         .then(data => { 
             weatherConditions.innerHTML = `<img src='http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png'> <br>
-            temp: ${data.main.temp}°C  <br>
-           temp max: ${data.main.temp_max}°C <br> 
-           temp min: ${data.main.temp_min}°C <br> 
-           ciśnienie: ${data.main.pressure}hPa <br> 
-           wilgotność: ${data.main.humidity}% <br>
+            Temperature: ${data.main.temp}°C  <br>
+           Pressure: ${data.main.pressure}hPa <br> 
+           Humidity: ${data.main.humidity}% <br>
+           Wind: ${data.wind.speed}km/h <br>
+           Wind direction: ${data.wind.deg}° <br>
+           <img style = "width:15%; transform:rotate(${data.wind.deg}deg);" src='./src/wind_arrow/arrow.png'> <br>
            `;
            backgroundChange.style.background = `url(${this.setBackgroundPicture(data.weather[0].id)})`;
         })
