@@ -5,6 +5,7 @@ import Search from './Search';
 import News from './news'
 import {initCurrency, getConvertedCurrency} from './currency'
 import {TimeInPlace, getTimeZone} from './time'
+import {getUserLocation} from './userLocation'
 
 let defCity = {
     "country": "PL",
@@ -13,8 +14,8 @@ let defCity = {
     "lng": "21.01178"
 };
 
-
 const search = new Search("searchForm", "mySelect", "myInput", defCity);
+
 let city = search.getSelectedCity();
 let news = new News(city.country, 'en');
 let day = 0; // current day, available 0 to 6
@@ -30,9 +31,20 @@ weather.apiCall(weather.setURL());
 
 news.getNewsByCountry(news.setNewsUrl());
 
+getUserLocation()
+    .then((data) => {
+        let c = search.getCityByName(...data);
+        if(c !== null) {
+            search.setCity(c);
+            city = c;
+            reset(city);
+        }
+    })
+    .catch((err) => {
+    });
+
 //reset
-function reset() {
-    city = search.getSelectedCity();
+function reset(city) {
     news.getCountry(city.country, 'en');
     sunTime.getSunsetSunrise(city.country, city.name); 
     weather.getCoordinates(city.lat, city.lng);
@@ -40,16 +52,15 @@ function reset() {
 
 document.getElementById("myInput").addEventListener("keydown", function(event){
     if(event.keyCode === 13){
-        reset();
+        city = search.getSelectedCity();
+        reset(city);
     }
 })
 
 document.getElementById("sugestion").addEventListener("click", function(){
-        reset();
+    city = search.getSelectedCity();
+    reset(city);
 })
-
-console.log('main.js ready to serve');
-
 
 function insertCurrency(warp,cName,cCode,cSymbol,convertedC){
     wrap.innerHTML = `<h3>Currency in searching city:</h3>
