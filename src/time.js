@@ -26,17 +26,19 @@ export class TimeInPlace {
         };
     }
     countTime(){ 
-        this.currentTime.minutes += 1;
-        this.inOtherPlace.minutes += 1;
         if(this.currentTime.minutes === 60 && this.inOtherPlace.minutes === 60){
-            this.currentTime.hours += 1;
-            this.inOtherPlace.hours += 1;
             this.currentTime.minutes = 0;
             this.inOtherPlace.minutes = 0;
-            if(this.currentTime.hours === 24 && this.inOtherPlace.hours === 24){
+            if(this.currentTime.hours === 23 && this.inOtherPlace.hours === 23){
                 this.currentTime.hours = 0;
                 this.inOtherPlace.hours = 0;
+            }else {
+                this.currentTime.hours += 1;
+                this.inOtherPlace.hours += 1;
             }
+        } else {
+            this.currentTime.minutes += 1;
+            this.inOtherPlace.minutes += 1;
         }
     }
     updateTimeIOP(formattedTime){
