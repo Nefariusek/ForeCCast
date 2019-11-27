@@ -29,14 +29,14 @@ class News {
   }
 
   newsClick(articleUrl){
-    console.log('Akcja reakcja');
+    //console.log('Akcja reakcja');
     window.open(`${articleUrl}`); 
   }
 
   getNews(newsArr){
 
     if(!newsArr.totalResults){
-      console.log("we are out of news");
+      //console.log("we are out of news");
       this.divNews.innerHTML = `<h1>No news at this moment</h1>`;
     }else{
       let divNewsImg;
@@ -52,10 +52,10 @@ class News {
         divNewsBox = document.createElement('div');
         divNewsBox.className = 'news';
         divNewsBox.addEventListener("click", () => {   
-          console.log('Akcja reakcja');
+          //console.log('Akcja reakcja');
           window.open(`${articleUrl}`); 
         });
-        console.log("Action listener created" + i);
+        //console.log("Action listener created" + i);
         if(!imgUrl){
           imgUrl=imgUrlSrc;
         }
@@ -71,7 +71,7 @@ class News {
         }
         divNewsText = document.createElement('div');
         divNewsText.className = 'newsText';
-        divNewsText.innerHTML = `<h3>${title}</h3><p>${description}</p>`
+        divNewsText.innerHTML = `<h4>${title}</h4><p>${description}</p>`
         divNewsBox.insertBefore(divNewsText, null);
         this.divNews.appendChild(divNewsBox);
       }
