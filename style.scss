@@ -114,54 +114,102 @@ body {
     font-size: 1rem;
   }
 }
-
-#time-currency {
+.time .currency{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: stretch;
+}
+#time{
+  display: flex;
+  flex: wrap;
+  font-size: 1rem;
+  background-color: rgba(50,50,50,75);
+  padding: 2%;
+  color: white;
+  .time-digits{
+    flex:2;
+    text-align: center;
+  }
+  .time-text{
+    flex:2;
+  }
+}
+.time-wrap {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
+  flex-direction: row;
   font-size: 1rem;
-  h3{
-    font-size: 1.2rem;
-  }
-  #clock {
+  justify-content: space-around;
+  background-color: #044b15;
+  border: 1px solid #022e0c;
+  padding: 2%;
+  .clock {
+    background-color: #f3faf5;
+    box-sizing: border-box;
     width: 101px;
     height: 101px;
+    padding: 4px;
     border-radius: 50%;
-    border: 1px solid lightgray;
+    border: 1px solid #208638;
     transform: rotate(0deg);
+    background-image: url('https://cssanimation.rocks/images/posts/clocks/ios_clock.svg');
+    background-size: contain;
+    background-repeat: space;
+    background-origin: content-box;
+    background-position: center;
     .hours{
-      border: 3px solid black;
+      border: 3px solid #01330d;
       position: absolute;
-      height: 35%;
-      border-radius: 2px;
+      height: 30%;
+      border-radius: 18%;
       left: 48%;
-      bottom: 50px;
+      bottom: 50%;
     }
     .minutes{
-      border: 1px solid black;
+      border: 1px solid #000702;
       position: absolute;
-      height: 50%;
-      border-radius: 1px;
-      left: 50px;
-      bottom: 50px;
+      height: 35%;
+      border-radius: 18%;
+      left: 50%;
+      bottom: 50%;
     }
     .hand {
       transform-origin: bottom center;
     }
-  }
-  #currency {
-    margin: auto;
-    font-size: 1rem;
-    b{
-      text-align: left;
-      color: black; 
+    .time-in{
+      box-sizing: border-box;
+      font-size: 0.7rem;
+      position: relative;
+      padding: 1%;
+      color: white;
+      background-color: #01330d;
+      border: 1px solid #001805;
+      text-align: center;
+      left: 35%;
+      top: 60%;
     }
-    .rate{
-      color: rgb(83, 83, 83);
-    }
-    
   }
 }
+.currency-wrap{
+  // display: flex;
+  // flex-wrap: wrap;
+  // flex-direction: column;
+  // justify-content: center;
+}
+#currency {
+  font-size: 1rem;
+  margin: auto;
+  b{
+    text-align: left;
+    color: black; 
+  }
+  .rate{
+    color: rgb(83, 83, 83);
+  }
+  
+}
+
 // @keyframes rotateClock {
 //   from {
 //     transform: rotate(0deg);
