@@ -39,7 +39,7 @@ class News {
       //console.log("we are out of news");
       this.divNews.innerHTML = `<h1>No news at this moment</h1>`;
     }else{
-      let divNewsImg;
+      let newsImg;
       let divNewsText;
       let divNewsBox;
       for(let i = 0; i < 5; i++){
@@ -50,7 +50,7 @@ class News {
         let articleUrl = newsArr.articles[article].url;
 
         divNewsBox = document.createElement('div');
-        divNewsBox.className = 'news';
+        divNewsBox.className = 'news-card card';
         divNewsBox.addEventListener("click", () => {   
           //console.log('Akcja reakcja');
           window.open(`${articleUrl}`); 
@@ -59,10 +59,10 @@ class News {
         if(!imgUrl){
           imgUrl=imgUrlSrc;
         }
-        divNewsImg = document.createElement('div');
-        divNewsImg.className = 'newsImg';
-        divNewsImg.innerHTML = `<img src="${imgUrl}">`;
-        divNewsBox.insertBefore(divNewsImg, null);
+        newsImg = document.createElement('img');
+        newsImg.className = 'newsImg card-img-top';
+        newsImg.src = `${imgUrl}`;
+        divNewsBox.insertBefore(newsImg, null);
         if(!title){
           title = " ";
         }
@@ -70,8 +70,8 @@ class News {
           description = " ";
         }
         divNewsText = document.createElement('div');
-        divNewsText.className = 'newsText';
-        divNewsText.innerHTML = `<h4>${title}</h4><p>${description}</p>`
+        divNewsText.className = 'newsText card-body';
+        divNewsText.innerHTML = `<h4 class="card-title">${title}</h4><p class="card-text">${description}</p>`
         divNewsBox.insertBefore(divNewsText, null);
         this.divNews.appendChild(divNewsBox);
       }
