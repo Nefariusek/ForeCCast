@@ -89,6 +89,7 @@ class Weather {
         let seconds = "0" + date.getSeconds();
         // Will display time in 10:30:23 format
         let formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+
         return formattedTime;
     }
 
