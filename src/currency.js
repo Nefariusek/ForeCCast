@@ -7,7 +7,7 @@ const apiReq = {  "method": "GET",
 const requestURLConvert = 'https://currency-converter5.p.rapidapi.com/currency/historical/';
 const nowT = Date.now();
 const currentDate = ''+ new Date(nowT).getUTCFullYear() +'-'+ new Date(nowT).getUTCMonth()+'-'+ new Date(nowT).getUTCDay(); //'2019-11-21';
-
+const sing = ['€', '₣', '$', '¥'];
 async function getCurrencyData(countryCode){
     return await fetch(requestURL + countryCode)
    .then(function(res){ if(res.status === 200) return res.json(); })
@@ -80,10 +80,10 @@ export class Currency{
    insertCurrency(wrap){
       let s = '';
       for(let i = 0; i < this.convName.length; i++){
-         s += `${this.convName[i]}: ${this.convRate[i]}<br>`;
-      }
+         s += `<b>${this.convName[i]}</b>: <span class="rate">${this.convRate[i]}${sing[i]}</span><br>`;
+      } 
       wrap.innerHTML = `<h4>Currency in searching city:</h4>
-      <b>${this.name}</b>:<br> 1 ${this.code} [1 ${this.symbol}] <br>
+      <b>${this.name}</b>:<br><span class="rate"> ${this.code} [1 ${this.symbol}]</span> <br>
       ${s}<br> `
   }
   async createCurrency(city,wrapCu){
