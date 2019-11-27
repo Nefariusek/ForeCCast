@@ -6,8 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>ForeCCast</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
   <link rel="shortcut icon" type="image/png" href="./src/img/favicon.ico" />
   <link rel="stylesheet" href="./src/map/jquery-jvectormap-2.0.3.css" type="text/css" media="screen"/>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -15,10 +25,10 @@
   <script defer src="http://jvectormap.com/js/jquery-jvectormap-world-mill.js"></script>
 </head>
 
-<body id="test">
+<body>
   <div id="page-wrapper">
     <div class="mt-4">
-      <div id="page-header"><img src="./src/img/logo.png" alt=""></div>
+      <div id="page-header"><img src="./src/img/logo.png" alt="ForeCCast logo"></div>
     </div>
     <div id="content-wrapper" class="row d-flex justify-content-around mt-4">
 
@@ -53,6 +63,11 @@
           <div>
             <div id="sun-moon">
               <h1>Astronomy Forecast:</h1>
+              <div class="header">
+                <button class="btn btn-warning mr-4" id="previousDay">&lt</button>
+                <div id="cityAndDate"></div>
+                <button class="btn btn-warning mr-4" id="nextDay">&gt</button>
+              </div id="header">
               <div id="output"></div>
             </div>
           </div>
@@ -63,11 +78,9 @@
       </div>
 
       <div class="news card col-10 col-md-5 col-xl-3 p-2 mb-3">
-        <div id="news">
-          <div id="newsImg"></div>
-          <div id="newsText">id="news"</div>
-        </div>
-      </div>
+          <h1>NEWS</h1>
+          <div id="news">
+          </div>
     </div>
 
     <script defer src="index.js"></script>

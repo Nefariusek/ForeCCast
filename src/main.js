@@ -20,7 +20,8 @@ let defCity = {
 const search = new Search("searchForm", "mySelect", "myInput", defCity);
 let city = search.getSelectedCity();
 let news = new News(city.country, 'en');
-let astronomyForecast = new AstronomyForecast(city.name, 0);
+let day = 0; // 0 - current day
+let astronomyForecast = new AstronomyForecast(city.name, day);
 
 //init map
 map.initMap();
@@ -40,6 +41,7 @@ forecast.apiCall(forecast.setURL());
 
 news.getNewsByCountry(news.setNewsUrl());
 astronomyForecast.getAstronomyForecast(astronomyForecast.setUrl());
+astronomyForecast.buttonStyle();
 
 // // Show info when the user clicks the button
 // document.getElementById('getText')
@@ -64,7 +66,7 @@ function reset(city) {
     news.getCountry(city.country, 'en');
     weather.getCoordinates(city.lat, city.lng);
     forecast.getCoordinates(city.lat, city.lng);
-    astronomyForecast.getCity(city.name, 0);
+    astronomyForecast.getCity(city.name, day);
     
 }
 
@@ -78,6 +80,20 @@ document.getElementById("myInput").addEventListener("keydown", function(event){
 document.getElementById("sugestion").addEventListener("click", function(){
     city = search.getSelectedCity();
     reset(city);
+})
+
+document.getElementById('previousDay').addEventListener('click', function() {
+    if(day > 0) {
+        day--;
+        reset(city);
+    }
+})
+
+document.getElementById('nextDay').addEventListener('click', function() {
+    if(day < 7) {
+        day++;
+        reset(city);
+    }
 })
 
 function insertCurrency(warp,cName,cCode,cSymbol,convertedC){

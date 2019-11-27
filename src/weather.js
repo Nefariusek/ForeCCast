@@ -106,7 +106,7 @@ class Weather {
            Wind direction: ${data.wind.deg}° <br>
            <img style = "width:15%; transform:rotate(${data.wind.deg}deg);" src='./src/wind_arrow/arrow.png'> <br>
            `;
-           backgroundChange.style.background = `url(${this.setBackgroundPicture(data.weather[0].id)})`;
+           backgroundChange.style.background = `url(${this.setBackgroundPicture(data.weather[0].id)}) center fixed`;
         })
 
     }
