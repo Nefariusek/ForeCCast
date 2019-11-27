@@ -37,7 +37,7 @@ class News {
 
     if(!newsArr.totalResults){
       //console.log("we are out of news");
-      this.divNews.innerHTML = `<h1>No news at this moment</h1>`;
+      this.divNews.innerHTML = `<h1>No news at the moment</h1>`;
     }else{
       let newsImg;
       let divNewsText;
