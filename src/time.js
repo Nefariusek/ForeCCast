@@ -1,4 +1,8 @@
 const requestURL = 'https://restcountries.eu/rest/v2/alpha/';
+const requestTime = 'http://api.timezonedb.com/v2.1/get-time-zone?key=K8YSTR0U8XTK&format=json&by=position&';
+
+var targetDate = new Date();
+var timestamp = targetDate.getTime()/1000 + targetDate.getTimezoneOffset() * 60; 
 
 async function getTimeZone(countryCode){
     const timeZone= await fetch(requestURL+countryCode)
@@ -24,6 +28,7 @@ export class TimeInPlace {
             minutes: 0,
             seconds: 0
         };
+        this.formattedTime = this.currentTime.hours+':'+this.currentTime.minutes+':'+this.currentTime.seconds;
     }
     countTime(){ 
         if(this.currentTime.minutes === 60 && this.inOtherPlace.minutes === 60){
@@ -41,10 +46,10 @@ export class TimeInPlace {
             this.inOtherPlace.minutes += 1;
         }
     }
-    updateTimeIOP(formattedTime){
-        this.inOtherPlace.hours = parseInt(formattedTime.slice(0,2), 10);
-        this.inOtherPlace.minutes = parseInt(formattedTime.slice(3,5), 10);
-        this.inOtherPlace.seconds = parseInt(formattedTime.slice(7), 10);
+    updateTimeIOP(){
+        this.inOtherPlace.hours = parseInt(this.formattedTime.slice(0,2), 10);
+        this.inOtherPlace.minutes = parseInt(this.formattedTime.slice(3,5), 10);
+        this.inOtherPlace.seconds = parseInt(this.formattedTime.slice(7), 10);
     }
     
     insertTime(wrap){
@@ -52,12 +57,24 @@ export class TimeInPlace {
         ${(this.currentTime.hours < 10)? '0' + this.currentTime.hours : this.currentTime.hours }:
         ${(this.currentTime.minutes < 10)? '0' + this.currentTime.minutes : this.currentTime.minutes}
         <h3>Time in searching city:</h3>
-        ${(this.inOtherPlace.hours < 10) ? '0' + this.inOtherPlace.hours : this.inOtherPlace.hours }:
-        ${(this.inOtherPlace.minutes < 10)? '0' + this.inOtherPlace.minutes : this.inOtherPlace.minutes}<br>`
+        ${(this.inOtherPlace.hours!='NaN')?(this.inOtherPlace.hours < 10) ? '0' + this.inOtherPlace.hours : this.inOtherPlace.hours:'00' }:
+        ${(this.inOtherPlace.minutes!='NaN')?(this.inOtherPlace.minutes < 10)? '0' + this.inOtherPlace.minutes : this.inOtherPlace.minutes:'00'}<br>`
     }
     printInConsole(){
         console.log('Current time: ', this.currentTime);
         console.log('Time in other place:', this.inOtherPlace);
+    }
+    async getTime(city){
+        await fetch(requestTime+'lat='+city.lat+'&lng='+city.lng)
+        .then(res => { if(res.status === 200) return res.json(); })
+        .then(data => { this.formattedTime=data.formatted.slice(11)})
+        .catch(error => console.log(error));
+
+        this.updateTimeIOP();
+    }
+    async createTime(city,wrap){
+        await this.getTime(city);
+        this.insertTime(wrap);
     }
 }
  export {getTimeZone }

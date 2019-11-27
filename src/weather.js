@@ -6,7 +6,6 @@ class Weather {
         this.lat = lat;
         this.lon = lon;
         this.backgroundPicture = './src/bg_img/clear.jpg';
-        this.timeoffset = 0;
     }
     //set lat value
     setLat(value) {
@@ -96,7 +95,6 @@ class Weather {
            wilgotność: ${data.main.humidity}% <br>
            `;
            backgroundChange.style.background = `url(${this.setBackgroundPicture(data.weather[0].id)})`;
-           this.timeoffset = data.timezone;
         })
         
     }

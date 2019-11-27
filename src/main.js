@@ -35,8 +35,8 @@ const wrapTim = document.getElementById("clock");
 const wrapCu = document.getElementById("currency");
 const t = new TimeInPlace();
 const currency = new Currency();
-t.updateTimeIOP(weather.getTime(weather.timeoffset));
-t.insertTime(wrapTim);
+
+t.createTime(city,wrapTim);
 currency.createCurrency(city,wrapCu);
 
 //reset
@@ -46,9 +46,8 @@ function reset() {
     sunTime.getSunsetSunrise(city.country, city.name); 
     weather.getCoordinates(city.lat, city.lng);
 
-    t.updateTimeIOP(weather.getTime(weather.timeoffset));
+    t.createTime(city,wrapTim);
     currency.createCurrency(city,wrapCu);
-    
 }
 
 document.getElementById("myInput").addEventListener("keydown", function(event){
