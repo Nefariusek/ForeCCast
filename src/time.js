@@ -31,10 +31,10 @@ export class TimeInPlace {
         this.formattedTime = this.currentTime.hours+':'+this.currentTime.minutes+':'+this.currentTime.seconds;
     }
     countTime(){ 
-        if(this.currentTime.minutes === 60 && this.inOtherPlace.minutes === 60){
+        if(this.currentTime.minutes >= 59 && this.inOtherPlace.minutes >= 59){
             this.currentTime.minutes = 0;
             this.inOtherPlace.minutes = 0;
-            if(this.currentTime.hours === 23 && this.inOtherPlace.hours === 23){
+            if(this.currentTime.hours >= 23 && this.inOtherPlace.hours >= 23){
                 this.currentTime.hours = 0;
                 this.inOtherPlace.hours = 0;
             }else {
@@ -91,13 +91,13 @@ function creatClockAn(time,timer){
     const wrapH = document.querySelector(`${timer} .hours`);
     const rotateH = (30 * time.hours);
     const rotateM = (6 * time.minutes);
-    if(time.hours === 0 || time.hours === 12){
-        wrapH.style.transform = `rotate(180deg)`;
+    if(time.hours === 12 || time.hours === 24){
+        wrapH.style.transform = `rotate(0deg)`;
     } else {
         wrapH.style.transform = `rotate(${rotateH}deg)`; 
     }
-    if(time.minutes === 0){
-        wrapM.style.transform = `rotate(180deg)`;
+    if(time.minutes == 0){
+        wrapM.style.transform = `rotate(0deg)`;
     } else {
         wrapM.style.transform = `rotate(${rotateM}deg)`;
     }
