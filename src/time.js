@@ -53,12 +53,14 @@ export class TimeInPlace {
     }
     
     insertTime(wrap){
-        wrap.innerHTML = `<h3>Time:</h3>
+        wrap.innerHTML = `<h3>Time:</h3><span class="timer">
         ${(this.currentTime.hours < 10)? '0' + this.currentTime.hours : this.currentTime.hours }:
         ${(this.currentTime.minutes < 10)? '0' + this.currentTime.minutes : this.currentTime.minutes}
+        </span>
         <h3>Time in searching city:</h3>
         ${(this.inOtherPlace.hours!='NaN')?(this.inOtherPlace.hours < 10) ? '0' + this.inOtherPlace.hours : this.inOtherPlace.hours:'00' }:
         ${(this.inOtherPlace.minutes!='NaN')?(this.inOtherPlace.minutes < 10)? '0' + this.inOtherPlace.minutes : this.inOtherPlace.minutes:'00'}<br>`
+    
     }
     printInConsole(){
         console.log('Current time: ', this.currentTime);
@@ -77,4 +79,24 @@ export class TimeInPlace {
         this.insertTime(wrap);
     }
 }
- export {getTimeZone }
+
+function creatClockAn(time){
+    const wrapM = document.querySelector('.minutes');
+    const wrapH = document.querySelector('.hours');
+    console.log(time.hours, time.minutes);
+    const rotateH = (30 * time.hours);
+    const rotateM = (6 * time.minutes);
+    if(time.hours === 0 || time.hours === 12){
+        wrapH.style.transform = `rotate(180deg)`;
+    } else {
+        wrapH.style.transform = `rotate(${rotateH}deg)`; //
+    }
+    if(time.minutes === 0){
+        wrapM.style.transform = `rotate(180deg)`;
+    } else {
+        wrapM.style.transform = `rotate(${rotateM}deg)`; //
+    }
+    
+    // time.hours time.minutes
+}
+ export {getTimeZone, creatClockAn }

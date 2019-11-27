@@ -4,7 +4,7 @@ import Weather from './weather';
 import Search from './Search';
 import News from './news'
 import {Currency} from './currency'
-import {TimeInPlace} from './time'
+import {TimeInPlace, creatClockAn} from './time'
 
 let defCity = {
     "country": "PL",
@@ -31,7 +31,7 @@ weather.apiCall(weather.setURL());
 news.getNewsByCountry(news.setNewsUrl());
 
 // Variables useing in Time and currency
-const wrapTim = document.getElementById("clock");
+const wrapTim = document.getElementById("time");
 const wrapCu = document.getElementById("currency");
 const t = new TimeInPlace();
 const currency = new Currency();
@@ -61,8 +61,9 @@ document.getElementById("sugestion").addEventListener("click", function(){
 })
 
 console.log('main.js ready to serve');
-
+creatClockAn(t.currentTime);
 setInterval(() => {
     t.countTime();
     t.insertTime(wrapTim);
+    creatClockAn(t.currentTime);
 }, 60000); 
