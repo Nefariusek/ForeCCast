@@ -31,6 +31,7 @@ document.getElementById("world-map").addEventListener("click", () => {
         map.flag = false;
     }
 });
+document.getElementById("world-map").hidden = true;
 
 // Default current weather data
 let weather = new Weather(city.lat, city.lng);
