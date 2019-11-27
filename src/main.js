@@ -3,8 +3,8 @@ import * as sunTime from './sunsetSunriseTime';
 import Weather from './weather';
 import Search from './Search';
 import News from './news'
-import {initCurrency, getConvertedCurrency} from './currency'
-import {TimeInPlace, getTimeZone} from './time'
+import {Currency} from './currency'
+import {TimeInPlace} from './time'
 
 let defCity = {
     "country": "PL",
@@ -30,12 +30,25 @@ weather.apiCall(weather.setURL());
 
 news.getNewsByCountry(news.setNewsUrl());
 
+// Variables useing in Time and currency
+const wrapTim = document.getElementById("clock");
+const wrapCu = document.getElementById("currency");
+const t = new TimeInPlace();
+const currency = new Currency();
+t.updateTimeIOP(weather.getTime(weather.timeoffset));
+t.insertTime(wrapTim);
+currency.createCurrency(city,wrapCu);
+
 //reset
 function reset() {
     city = search.getSelectedCity();
     news.getCountry(city.country, 'en');
     sunTime.getSunsetSunrise(city.country, city.name); 
     weather.getCoordinates(city.lat, city.lng);
+
+    t.updateTimeIOP(weather.getTime(weather.timeoffset));
+    currency.createCurrency(city,wrapCu);
+    
 }
 
 document.getElementById("myInput").addEventListener("keydown", function(event){
@@ -50,33 +63,7 @@ document.getElementById("sugestion").addEventListener("click", function(){
 
 console.log('main.js ready to serve');
 
-
-function insertCurrency(warp,cName,cCode,cSymbol,convertedC){
-    wrap.innerHTML = `<h3>Currency in searching city:</h3>
-    <b>${cName}</b>: 1 ${cCode}[1 ${cSymbol}]
-    <b>${convertedC.currency_name}</b> ${convertedC.rate}`
-}
-function insertTime(wrap,tHour,tMinut,t2Hour,t2Minut){
-    wrap.innerHTML = `<h3>Time:</h3>
-    ${tHour}:${tMinut}
-    <h3>Time in searching city:</h3>
-    ${t2Hour}:${t2Minut}`
-}
-const wrap = document.getElementById('time-currency');
-
-const t = new TimeInPlace();
-t.updateTimeIOP('16:26:34');
-
 setInterval(() => {
     t.countTime();
-    insertTime(wrap,t.currentTime.hours,t.currentTime.minutes,t.inOtherPlace.hours,t.inOtherPlace.minutes);
+    t.insertTime(wrapTim);
 }, 60000); 
-
-// const convertedCurrency = getConvertedCurrency('pln','eur');
-const currency = initCurrency('de');
-const convertedC = getConvertedCurrency('pln','eur');
-
-currency.then(c => { insertCurrency(wrap,c.name,c.code,c.symbol,convertedC) });
-
-// t.printInConsole();
-// getTimeZone('DE');

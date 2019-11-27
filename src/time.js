@@ -28,7 +28,7 @@ export class TimeInPlace {
     countTime(){ 
         this.currentTime.minutes += 1;
         this.inOtherPlace.minutes += 1;
-        if(this.currentTime.minutes >= 60 && this.inOtherPlace.minutes >= 60){
+        if(this.currentTime.minutes === 60 && this.inOtherPlace.minutes === 60){
             this.currentTime.hours += 1;
             this.inOtherPlace.hours += 1;
             this.currentTime.minutes = 0;
@@ -51,7 +51,7 @@ export class TimeInPlace {
         ${(this.currentTime.minutes < 10)? '0' + this.currentTime.minutes : this.currentTime.minutes}
         <h3>Time in searching city:</h3>
         ${(this.inOtherPlace.hours < 10) ? '0' + this.inOtherPlace.hours : this.inOtherPlace.hours }:
-        ${(this.inOtherPlace.minutes < 10)? '0' + this.inOtherPlace.minutes : this.inOtherPlace.minutes}`
+        ${(this.inOtherPlace.minutes < 10)? '0' + this.inOtherPlace.minutes : this.inOtherPlace.minutes}<br>`
     }
     printInConsole(){
         console.log('Current time: ', this.currentTime);
