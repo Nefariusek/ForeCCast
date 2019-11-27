@@ -1,17 +1,58 @@
 $font-stack: helvetica;
-$primary-color: navy;
+$primary-color: black;
 $body-color: lightblue;
 
-body {
-  background-color: $body-color;
-  font: 2em $font-stack;
-  color: $primary-color;
+html {
+  scroll-behavior: smooth;
 }
 
-#page-header {
-  text-align: center;
-  font-size: 3em;
-  color: green;
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: $body-color;
+  font: 1.5em $font-stack;
+  color: $primary-color;
+  min-width: 300px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(100,100,100, 0.6);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #208638;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #145222;
+}
+
+//map
+#world-map {
+  margin-top: 8px;
+  width: 100%;
+  height: 400px;
+  border: 3px rgba(100,100,100, 0.6) double;
+  border-radius: 4px;
+}
+
+//map button
+#map-button {
+  margin-top: 8px;
+  width: 100%;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+#logo {
+  width: 100%;
 }
 
 #content-wrapper {
@@ -23,7 +64,7 @@ body {
 #searchForm {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .autocomplete {
@@ -49,6 +90,7 @@ body {
   font-size: 20px;
   width: 40%;
   height: 44px;
+  color: white;
   z-index: 2;
 }
 
@@ -56,7 +98,7 @@ body {
   width: 48%;
 }
 
-.sugestionItem>div {
+.sugestionItem>div, .sugestionItem>div:hover {
   padding: 3px 14px 2px 14px;
   color: lightgray;
   background-color: #145222;
@@ -80,11 +122,6 @@ body {
   color: white;
 }
 
-#page-header img {
-  filter: drop-shadow(5px 5px 50px #000000);
-  max-width: 90%;
-}
-
 .card {
   box-shadow: 5px 5px 50px 14px #000000;
   background-color: rgba(163, 163, 163, 0.75);
@@ -99,35 +136,217 @@ body {
   height: auto;
 }
 
-#news {
+.news {
+  overflow-y: scroll;
+  max-height: 70vh;
+  align-items: center;
+  
+  h1, h4 {
+    width: 100%;
+    text-align: center;
+    border-bottom: 2px rgb(68, 68, 68) solid;
+    font-weight: 900;
+    color: white;
+    -webkit-text-stroke: 1px black;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+  }
+}
+
+.news-card {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+  margin-bottom: 16px;
+  background-color: rgba(255,255,255,0.3);
+  text-align: center;
+  overflow: unset;
 
-  #newsImg {
-    position: relative;
-    width: 100%;
-
-    img {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      object-fit: cover;
-      width: 90%;
-      height: 90%;
-    }
+  h4 {
+    font-size: 1.3em;
   }
 
-  #newsText {
-    position: relative;
-    text-align: center;
-    width: 90%;
+  .newsImg {
+    width: 100%;
+  }
+
+  .card-text {
+    padding-bottom: 10px;
+  }
+
+  .newsText {
+    padding: 5px;
+    width: 100%;
     font-size: 1rem;
+    border-top: 2px rgb(68, 68, 68) solid;
   }
 }
 
 #sun-moon h1 {
-  color: #ff9317;
+  color: #ffc107;
+  text-shadow: 2px 2px 3px black;
 }
+
+
+#forecast {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
+  border: 1px solid green;
+  
+}
+.date, .icon, .description, .temp, .pressure, .humidity, .wind, .windDirection{
+  width: auto;
+  font-size: 1rem;
+  border: 1px solid green;
+}
+
+.day{
+  border: 1px solid green;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 678px) {
+  #searchForm {
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100px;
+  }
+
+  #myInput {
+        width: calc(100% - 82px);
+      }
+
+  #input-group-country, #input-group-city, .autocomplete {
+    width: 100%;
+    height: 44px;
+  }
+
+  .sugestionItem {
+    left: 82px;
+  }
+
+  .input-group {
+    margin-bottom: 8px;
+
+    .input-group-prepend {
+      
+      .input-group-text {
+        width: 82px;
+        height: 44px;
+      }
+    }
+  }
+
+  .news {
+    max-height: none;
+    overflow: hidden;
+  }
+}
+.time .currency{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: stretch;
+}
+#time{
+  display: flex;
+  flex: wrap;
+  font-size: 1rem;
+  background-color: rgba(50,50,50,75);
+  padding: 2%;
+  color: white;
+  .time-digits{
+    flex:2;
+    text-align: center;
+  }
+  .time-text{
+    flex:2;
+  }
+}
+.time-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  font-size: 1rem;
+  justify-content: space-around;
+  background-color: #044b15;
+  border: 1px solid #022e0c;
+  padding: 2%;
+  .clock {
+    background-color: #f3faf5;
+    box-sizing: border-box;
+    width: 101px;
+    height: 101px;
+    padding: 4px;
+    border-radius: 50%;
+    border: 1px solid #208638;
+    transform: rotate(0deg);
+    background-image: url('https://cssanimation.rocks/images/posts/clocks/ios_clock.svg');
+    background-size: contain;
+    background-repeat: space;
+    background-origin: content-box;
+    background-position: center;
+    .hours{
+      border: 3px solid #01330d;
+      position: absolute;
+      height: 30%;
+      border-radius: 18%;
+      left: 48%;
+      bottom: 50%;
+    }
+    .minutes{
+      border: 1px solid #000702;
+      position: absolute;
+      height: 35%;
+      border-radius: 18%;
+      left: 50%;
+      bottom: 50%;
+    }
+    .hand {
+      transform-origin: bottom center;
+    }
+    .time-in{
+      box-sizing: border-box;
+      font-size: 0.7rem;
+      position: relative;
+      padding: 1%;
+      color: white;
+      background-color: #01330d;
+      border: 1px solid #001805;
+      text-align: center;
+      left: 35%;
+      top: 60%;
+    }
+  }
+}
+.currency-wrap{
+  // display: flex;
+  // flex-wrap: wrap;
+  // flex-direction: column;
+  // justify-content: center;
+}
+#currency {
+  font-size: 1rem;
+  margin: auto;
+  b{
+    text-align: left;
+    color: black; 
+  }
+  .rate{
+    color: rgb(83, 83, 83);
+  }
+  
+}
+
+// @keyframes rotateClock {
+//   from {
+//     transform: rotate(0deg);
+//   }to{
+//     transform: rotate(360deg);
+//   }
+// }

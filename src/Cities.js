@@ -1,4 +1,5 @@
 import cities from 'cities.json';
+import { type } from 'os';
 
 class Cities {
     constructor() {
@@ -24,6 +25,18 @@ class Cities {
         });
         return countryCities;
     }
+
+    // getByPosition(lat, lng) {
+    //     let city = null;
+    //     this._cities.forEach(element => {
+    //         if(lat == element.lat){
+    //             if(lng == element.lng){
+    //                 city = element;
+    //             }
+    //         }
+    //     })
+    //     return city;
+    // }
 
     getCountryCitiesNames(code) {
         let countryCities = [];
@@ -55,16 +68,23 @@ class Cities {
         return lng;
     }
 
-    // FindCity(city) {
-    //     let c = null;
-    //     cities.forEach(element => {
-    //         if(city === element.name){
-    //             c = element.name;
-    //         }
-    //     });
-    //     return c;
-    // }
-    
+    getByName(name, lat = 0, lng = 0) {
+        let city = null;
+        cities.forEach(element => {
+            if(name === element.name){
+                if(lat != 0 || lng != 0) {
+                    if(Math.abs((parseInt(lat) - parseInt(element.lat))) < 0.25) {
+                        if(Math.abs((parseInt(lng) - parseInt(element.lng))) < 0.25) {
+                            city = element;
+                        }
+                    }
+                } else {
+                    city = element;
+                }
+            }
+        });
+        return city;
+    }   
 }
 
 export default Cities;

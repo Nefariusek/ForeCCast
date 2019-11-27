@@ -7,6 +7,7 @@ class Search {
     this._select = document.getElementById(selectID);
     this._input = document.getElementById(inputID);
     this._form = document.getElementById(formID);
+    this._button = document.getElementById("map-button");
 
     this._selectedCountry = defCity.country;
     this._selectedCity = defCity;
@@ -18,7 +19,12 @@ class Search {
     this._sugestionsDiv.setAttribute("id", "sugestion");
     this._sugestionsDiv.setAttribute("class", "sugestionItem");
     this._input.parentNode.appendChild(this._sugestionsDiv);
-  
+
+    this._button.addEventListener("click", () => {
+      let map = document.getElementById("world-map")
+     map.hidden = !map.hidden;
+    })
+
     this.initSelect();
     this.autocomplete();
   }
@@ -43,6 +49,29 @@ class Search {
   getSelectedCity() {
     return this._selectedCity;
   }
+
+  getCityByName(name, lat = 0, lng = 0) {
+    return this._cities.getByName(name, lat, lng);
+  }
+
+  setCity(city) {
+    this._selectedCountry = city.country;
+    this._selectedCity = city;
+    this._input.value = this._selectedCity.name;
+    this._countryCities = this._cities.getCountryCities(this._selectedCountry);
+    this._select.selectedIndex = this._cities.getAllCountries().indexOf(this._selectedCountry);
+  }
+
+  setCountry(country) {
+  this._input.value = "";
+  this._selectedCountry = country;
+  this._countryCities = this._cities.getCountryCities(this._selectedCountry);
+  this._select.selectedIndex = this._cities.getAllCountries().indexOf(this._selectedCountry);
+  }
+
+  // getCityByPosition(lat,lng) {
+  //   return this._cities.getByPosition(lat, lng);
+  // }
 
 autocomplete() {
       let listLength = 0;
@@ -72,6 +101,7 @@ autocomplete() {
             this._input.value = sugestionsElementDiv.getElementsByTagName("input")[0].value;
             this._selectedCity = element;
             closeAllLists();
+            console.log(element);
 
           });
             this._sugestionsDiv.appendChild(sugestionsElementDiv);
