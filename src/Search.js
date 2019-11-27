@@ -7,6 +7,7 @@ class Search {
     this._select = document.getElementById(selectID);
     this._input = document.getElementById(inputID);
     this._form = document.getElementById(formID);
+    this._button = document.getElementById("map-button");
 
     this._selectedCountry = defCity.country;
     this._selectedCity = defCity;
@@ -18,7 +19,12 @@ class Search {
     this._sugestionsDiv.setAttribute("id", "sugestion");
     this._sugestionsDiv.setAttribute("class", "sugestionItem");
     this._input.parentNode.appendChild(this._sugestionsDiv);
-  
+
+    this._button.addEventListener("click", () => {
+      let map = document.getElementById("world-map")
+     map.hidden = !map.hidden;
+    })
+
     this.initSelect();
     this.autocomplete();
   }

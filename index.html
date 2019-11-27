@@ -20,7 +20,7 @@
   </script>
   <link rel="shortcut icon" type="image/png" href="./src/img/favicon.ico" />
   <link rel="stylesheet" href="./src/map/jquery-jvectormap-2.0.3.css" type="text/css" media="screen"/>
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
   <script defer src="./src/map/jquery-jvectormap-2.0.3.min.js"></script>
   <script defer src="http://jvectormap.com/js/jquery-jvectormap-world-mill.js"></script>
 </head>
@@ -51,8 +51,6 @@
       <div class="main-container col-10 col-md-11 col-xl-5 mb-3">
         <div class="place card mb-3 p-2">
           <div id="place">
-            <!-- Warning: inline style overide style.css file -->
-            <div id="world-map"></div>            
             <form autocomplete="off" id="searchForm" onsubmit="return false;">
               <div class="input-group" id="input-group-country">
                 <div class="input-group-prepend">
@@ -71,6 +69,8 @@
                 </div>
               </div>
             </form>
+            <button type="button" id="map-button" class="btn btn-warning btn-block">Show map to select country</button>
+            <div id="world-map"></div>  
           </div>
         </div>
         <div class="weather sun moon card p-2">
