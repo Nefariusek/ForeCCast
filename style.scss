@@ -126,8 +126,27 @@ body {
   }
 }
 
+#sun-moon {
+  text-align: center;
+}
 #sun-moon h1 {
-  color: #ff9317;
+  color: #ffc107;
+  text-shadow: 2px 2px black;
+}
+
+#sun-moon .header {
+  display: flex;
+  justify-content: space-around;
+}
+
+.moonImg {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: fill;
 }
 
 
