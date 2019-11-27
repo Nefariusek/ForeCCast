@@ -7,6 +7,8 @@ import {initCurrency, getConvertedCurrency} from './currency'
 import {TimeInPlace, /*getTimeZone*/} from './time'
 import {getUserLocation} from './userLocation'
 import Forecast from './forecast';
+import map from './map/map';
+
 
 let defCity = {
     "country": "PL",
@@ -19,6 +21,15 @@ const search = new Search("searchForm", "mySelect", "myInput", defCity);
 let city = search.getSelectedCity();
 let news = new News(city.country, 'en');
 let astronomyForecast = new AstronomyForecast(city.name, 0);
+
+//init map
+map.initMap();
+document.getElementById("world-map").addEventListener("click", () => {
+    if(map.flag) {
+        search.setCountry(map.country);
+        map.flag = false;
+    }
+});
 
 // Default current weather data
 let weather = new Weather(city.lat, city.lng);

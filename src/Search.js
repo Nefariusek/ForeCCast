@@ -55,6 +55,14 @@ class Search {
     this._countryCities = this._cities.getCountryCities(this._selectedCountry);
     this._select.selectedIndex = this._cities.getAllCountries().indexOf(this._selectedCountry);
   }
+
+  setCountry(country) {
+  this._input.value = "";
+  this._selectedCountry = country;
+  this._countryCities = this._cities.getCountryCities(this._selectedCountry);
+  this._select.selectedIndex = this._cities.getAllCountries().indexOf(this._selectedCountry);
+  }
+
   // getCityByPosition(lat,lng) {
   //   return this._cities.getByPosition(lat, lng);
   // }

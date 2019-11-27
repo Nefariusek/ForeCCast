@@ -9,9 +9,9 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="shortcut icon" type="image/png" href="./src/img/favicon.ico" />
-  <link rel="stylesheet" href="./src/jquery-jvectormap-2.0.3.css" type="text/css" media="screen"/>
+  <link rel="stylesheet" href="./src/map/jquery-jvectormap-2.0.3.css" type="text/css" media="screen"/>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script defer src="./src/jquery-jvectormap-2.0.3.min.js"></script>
+  <script defer src="./src/map/jquery-jvectormap-2.0.3.min.js"></script>
   <script defer src="http://jvectormap.com/js/jquery-jvectormap-world-mill.js"></script>
 </head>
 
@@ -25,17 +25,8 @@
       <div class="main-container col-10 col-md-11 col-xl-5 mb-3">
         <div class="place card mb-3 p-2">
           <div id="place">
-              <div id="world-map" style="width: 600px; height: 400px"></div>
-              <script>
-                $(function(){
-                  $('#world-map').vectorMap({
-                    map: 'world_mill',
-                    onRegionClick: function (event, code) {
-                      console.log("kraj");
-                    },
-                });
-              })
-              </script>
+            <!-- Warning: inline style overide style.css file -->
+            <div id="world-map"></div>            
             <form autocomplete="off" id="searchForm" onsubmit="return false;">
               <div class="input-group" id="input-group-country">
                 <div class="input-group-prepend">
@@ -80,6 +71,8 @@
     </div>
 
     <script defer src="index.js"></script>
+    
+      </script>
 </body>
 
 
