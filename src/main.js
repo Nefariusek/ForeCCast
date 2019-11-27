@@ -61,9 +61,11 @@ document.getElementById("sugestion").addEventListener("click", function(){
 })
 
 console.log('main.js ready to serve');
-creatClockAn(t.currentTime);
+creatClockAn(t.currentTime,'.timer1');
+creatClockAn(t.inOtherPlace,'.timer2');
 setInterval(() => {
     t.countTime();
     t.insertTime(wrapTim);
-    creatClockAn(t.currentTime);
+    creatClockAn(t.currentTime,'.timer1');
+    creatClockAn(t.inOtherPlace,'.timer2');
 }, 60000); 
