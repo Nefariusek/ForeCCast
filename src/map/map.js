@@ -12,7 +12,7 @@ const map = {
     },
     initMap(){
         $('#world-map').vectorMap({
-        map: 'world_mill',
+        map: 'world_mill_en',
         onRegionClick: (event, code) => {
             this._f = true;
             this._c = code;
