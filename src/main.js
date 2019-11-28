@@ -3,10 +3,12 @@ import Weather from './weather';
 import Search from './Search';
 import News from './news'
 import AstronomyForecast from './astronomyForecast.js';
-import {initCurrency, getConvertedCurrency} from './currency'
-import {TimeInPlace, getTimeZone} from './time'
 import {getUserLocation} from './userLocation'
 import Forecast from './forecast';
+import map from './map/map';
+import {Currency} from './currency'
+import {TimeInPlace, creatClockAn} from './time'
+
 
 let defCity = {
     "country": "PL",
@@ -16,10 +18,20 @@ let defCity = {
 };
 
 const search = new Search("searchForm", "mySelect", "myInput", defCity);
-
 let city = search.getSelectedCity();
 let news = new News(city.country, 'en');
-let astronomyForecast = new AstronomyForecast(city.name, 0);
+let day = 0; // 0 - current day
+let astronomyForecast = new AstronomyForecast(city.name, day);
+
+//init map
+map.initMap();
+document.getElementById("world-map").addEventListener("click", () => {
+    if(map.flag) {
+        search.setCountry(map.country);
+        map.flag = false;
+    }
+});
+document.getElementById("world-map").hidden = true;
 
 // Default current weather data
 let weather = new Weather(city.lat, city.lng);
@@ -30,6 +42,16 @@ forecast.apiCall(forecast.setURL());
 
 news.getNewsByCountry(news.setNewsUrl());
 astronomyForecast.getAstronomyForecast(astronomyForecast.setUrl());
+astronomyForecast.buttonStyle();
+
+// Variables useing in Time and currency
+const wrapTim = document.getElementById("time");
+const wrapCu = document.getElementById("currency");
+const t = new TimeInPlace();
+const currency = new Currency();
+
+t.createTime(city,wrapTim);
+currency.createCurrency(city,wrapCu);
 
 // // Show info when the user clicks the button
 // document.getElementById('getText')
@@ -54,8 +76,11 @@ function reset(city) {
     news.getCountry(city.country, 'en');
     weather.getCoordinates(city.lat, city.lng);
     forecast.getCoordinates(city.lat, city.lng);
-    astronomyForecast.getCity(city.name, 0);
+    astronomyForecast.getCity(city.name, day);
     
+
+    t.createTime(city,wrapTim);
+    currency.createCurrency(city,wrapCu);
 }
 
 document.getElementById("myInput").addEventListener("keydown", function(event){
@@ -70,32 +95,26 @@ document.getElementById("sugestion").addEventListener("click", function(){
     reset(city);
 })
 
-function insertCurrency(warp,cName,cCode,cSymbol,convertedC){
-    wrap.innerHTML = `<h3>Currency in searching city:</h3>
-    <b>${cName}</b>: 1 ${cCode}[1 ${cSymbol}]
-    <b>${convertedC.currency_name}</b> ${convertedC.rate}`
-}
-function insertTime(wrap,tHour,tMinut,t2Hour,t2Minut){
-    wrap.innerHTML = `<h3>Time:</h3>
-    ${tHour}:${tMinut}
-    <h3>Time in searching city:</h3>
-    ${t2Hour}:${t2Minut}`
-}
-const wrap = document.getElementById('time-currency');
+document.getElementById('previousDay').addEventListener('click', function() {
+    if(day > 0) {
+        day--;
+        reset(city);
+    }
+})
 
-const t = new TimeInPlace();
-t.updateTimeIOP('16:26:34');
+document.getElementById('nextDay').addEventListener('click', function() {
+    if(day < 7) {
+        day++;
+        reset(city);
+    }
+})
 
+console.log('main.js ready to serve');
+creatClockAn(t.currentTime,'.timer1');
+creatClockAn(t.inOtherPlace,'.timer2');
 setInterval(() => {
     t.countTime();
-    insertTime(wrap,t.currentTime.hours,t.currentTime.minutes,t.inOtherPlace.hours,t.inOtherPlace.minutes);
+    t.insertTime(wrapTim);
+    creatClockAn(t.currentTime,'.timer1');
+    creatClockAn(t.inOtherPlace,'.timer2');
 }, 60000); 
-
-// const convertedCurrency = getConvertedCurrency('pln','eur');
-const currency = initCurrency('de');
-const convertedC = getConvertedCurrency('pln','eur');
-
-currency.then(c => { insertCurrency(wrap,c.name,c.code,c.symbol,convertedC) });
-
-// t.printInConsole();
-// getTimeZone('DE');

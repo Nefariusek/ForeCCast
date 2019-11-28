@@ -13,9 +13,9 @@ class AstronomyForecast {
   }
 
   getCity(city, day) {
-    console.log('hello');
     this.setCity(city);
     this.setDay(day);
+    this.buttonStyle();
     return this.getAstronomyForecast(this.setUrl());
   }
 
@@ -42,27 +42,30 @@ class AstronomyForecast {
       case 'New moon':
         image = 'https://www.moongiant.com/moon_blog/birthday-nav/newmoon.jpg';
         break;
-      case 'First quarter':
-        image = 'https://www.moongiant.com/moon_blog/birthday-nav/firstquarter.jpg';
+      case 'First Quarter':
+        image = 'http://astronomy.robpettengill.org/photos/slides/Moon2807FirstQ20160414.jpg';
         break;
       case 'Waxing gibbous':
-        image = 'https://www.moongiant.com/moon_blog/birthday-nav/waxinggibbous.jpg';
+        image = 'http://astronomy.robpettengill.org/photos/slides/Moon2810WaxGib141004.jpg';
         break;
       case 'Full moon':
-        image = 'https://www.moongiant.com/moon_blog/birthday-nav/fullmoon.jpg';
+        image = 'http://astronomy.robpettengill.org/photos/slides/Moon2814Full151225.jpg';
         break;
       case 'Last quarter':
-        image = 'https://www.moongiant.com/moon_blog/birthday-nav/lastquarter.jpg';
+        image = 'http://astronomy.robpettengill.org/photos/slides/Moon2821WanGib140817.jpg';
         break;
       case 'Waning crescent':
-        image = 'https://www.moongiant.com/moon_blog/birthday-nav/waningcrescent.jpg';
+        image = 'http://astronomy.robpettengill.org/photos/slides/Moon2824WaningCrescent140819.jpg';
+        break;
+      case 'Waxing crescent':
+        image = 'http://astronomy.robpettengill.org/photos/slides/Moon2822WanCrescent140818.jpg';
         break;
 
       default:
         image = 'https://www.computerhope.com/jargon/e/error.gif';
     }
 
-    return '<img src="' + image + '" alt="Moon Phase" style="width: 153px; height: auto;"></img>';
+    return '<img class="moonImg" src="' + image + '" alt="Moon Phase" width="200" height="200" style="border-radius:50%";"></img>';
   }
 
   // Take and display info from API
@@ -70,9 +73,11 @@ class AstronomyForecast {
     fetch(setURL)
       .then(res => res.json())
       .then(data => {
-        let output = `<h2>${data.astronomy.city}</h2>`; // Display City
-        output += `
+        let cityAndDate = `<h2>${data.astronomy.city}</h2>`; // Display City
+        
+        let output = `
         <div>
+          <p>Date: ${data.astronomy.astronomy[this.day].utcTime.slice(1,10)}<p>
           <p>Sunrise: ${data.astronomy.astronomy[this.day].sunrise}</p>
           <p>Sunset: ${data.astronomy.astronomy[this.day].sunset}</p>
           <p>Moonrise: ${data.astronomy.astronomy[this.day].moonrise}</p>
@@ -82,7 +87,26 @@ class AstronomyForecast {
         </div>
       `;
         document.getElementById('output').innerHTML = output;
+        document.getElementById('cityAndDate').innerHTML = cityAndDate;
+
       });
+  }
+
+  buttonStyle() {
+    let btn1 = document.getElementById("previousDay");
+    let btn2 = document.getElementById("nextDay");
+    
+    if (this.day === 0) {
+      btn1.style.background = "transparent";
+    } else {
+      btn1.style.background = "#ffc107";
+    }
+
+    if (this.day === 7) {
+      btn2.style.background = "transparent";
+    } else {
+      btn2.style.background = "#ffc107";
+    }
   }
 }
 
