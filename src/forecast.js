@@ -62,7 +62,7 @@ class Forecast {
         let divTemp;
         divTemp = document.createElement('div');
         divTemp.className = `temp`;
-        divTemp.appendChild(document.createTextNode(array[i].main.temp));
+        divTemp.appendChild(document.createTextNode(`${array[i].main.temp} °C`));
         return divTemp;
     }
 
@@ -71,7 +71,7 @@ class Forecast {
         let divPressure;
         divPressure = document.createElement('div');
             divPressure.className = `pressure`;
-            divPressure.appendChild(document.createTextNode(array[i].main.pressure));
+            divPressure.appendChild(document.createTextNode(`${array[i].main.pressure} hPa`));
         return divPressure;
     }
 
@@ -80,7 +80,7 @@ class Forecast {
         let divHumidity;
         divHumidity = document.createElement('div');
             divHumidity.className = `humidity`;
-            divHumidity.appendChild(document.createTextNode(array[i].main.humidity));
+            divHumidity.appendChild(document.createTextNode(`${array[i].main.humidity} %`));
         return divHumidity;
     }
 
@@ -89,7 +89,7 @@ class Forecast {
         let divWind;
         divWind = document.createElement('div');
             divWind.className = `wind`;
-            divWind.appendChild(document.createTextNode(array[i].wind.speed));
+            divWind.appendChild(document.createTextNode(`${array[i].wind.speed} m/s`));
         return divWind;
     }
 
@@ -120,14 +120,16 @@ class Forecast {
         }
     }
     
-
+    async getForecastArray(data){
+        return await data;
+    }
 
     //sending API call 
    apiCall (setURL) {
         fetch(setURL)
         .then(res => res.json())
-        .then(data => { 
-            let array = data.list;
+        .then(data => data.list)
+        .then(array => { 
             console.log(array);
             this.getForecast(array);
         })
