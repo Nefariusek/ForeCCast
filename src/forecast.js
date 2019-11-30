@@ -26,7 +26,8 @@ class Forecast {
     }
     // set URL address for API call
     setURL (){
-        let forecastApiURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${this.lat}&lon=${this.lon}&units=metric&APPID=f051a3a6eaeb0d3041fa073c40a73a0c`;
+        let forecastApiKey = 'f051a3a6eaeb0d3041fa073c40a73a0c';
+        let forecastApiURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${this.lat}&lon=${this.lon}&units=metric&APPID=${forecastApiKey}`;
         return forecastApiURL;
     }
 
@@ -34,8 +35,8 @@ class Forecast {
     getDate(array, i){
         let divDate;
         divDate = document.createElement('div');
-        divDate.className = `date`;
-        divDate.appendChild(document.createTextNode(array[i].dt_txt));
+        divDate.className = `date col`;
+        divDate.appendChild(document.createTextNode(array[i].dt_txt.slice(0,16)));
         return divDate;
     }
 
@@ -43,7 +44,7 @@ class Forecast {
     getIconWeather(array, i){
         let divIconWeather;
         divIconWeather = document.createElement('div');
-        divIconWeather.className = `icon`;
+        divIconWeather.className = `icon col`;
         divIconWeather.innerHTML =  `<img src='http://openweathermap.org/img/wn/${array[i].weather[0].icon}@2x.png'> <br>`;
         return divIconWeather;
     }
@@ -52,7 +53,7 @@ class Forecast {
     getIconWeatherDescription(array, i){
         let divIconWeatherDescription;
         divIconWeatherDescription = document.createElement('div');
-            divIconWeatherDescription.className = `description`;
+            divIconWeatherDescription.className = `description col`;
             divIconWeatherDescription.appendChild(document.createTextNode(array[i].weather[0].description));
         return divIconWeatherDescription;
     }
@@ -61,8 +62,8 @@ class Forecast {
     getTemp(array, i){
         let divTemp;
         divTemp = document.createElement('div');
-        divTemp.className = `temp`;
-        divTemp.appendChild(document.createTextNode(array[i].main.temp));
+        divTemp.className = `temp col`;
+        divTemp.appendChild(document.createTextNode(`${array[i].main.temp} °C`));
         return divTemp;
     }
 
@@ -70,8 +71,8 @@ class Forecast {
     getPressure(array, i){
         let divPressure;
         divPressure = document.createElement('div');
-            divPressure.className = `pressure`;
-            divPressure.appendChild(document.createTextNode(array[i].main.pressure));
+            divPressure.className = `pressure col`;
+            divPressure.appendChild(document.createTextNode(`${array[i].main.pressure} hPa`));
         return divPressure;
     }
 
@@ -79,8 +80,8 @@ class Forecast {
     getHumidity(array, i){
         let divHumidity;
         divHumidity = document.createElement('div');
-            divHumidity.className = `humidity`;
-            divHumidity.appendChild(document.createTextNode(array[i].main.humidity));
+            divHumidity.className = `humidity col`;
+            divHumidity.appendChild(document.createTextNode(`${array[i].main.humidity} %`));
         return divHumidity;
     }
 
@@ -88,8 +89,8 @@ class Forecast {
     getWind(array, i){
         let divWind;
         divWind = document.createElement('div');
-            divWind.className = `wind`;
-            divWind.appendChild(document.createTextNode(array[i].wind.speed));
+            divWind.className = `wind col`;
+            divWind.appendChild(document.createTextNode(`${array[i].wind.speed} m/s`));
         return divWind;
     }
 
@@ -97,8 +98,8 @@ class Forecast {
     getWindDirection(array, i){
         let divWindDirection;
         divWindDirection = document.createElement('div');
-        divWindDirection.className = `windDirection`;
-        divWindDirection.innerHTML = `<img style = "width:15%; transform:rotate(${array[i].wind.deg}deg);" src='./src/wind_arrow/arrow.png'>`
+        divWindDirection.className = `windDirection col`;
+        divWindDirection.innerHTML = `<img style = "width:100%; transform:rotate(${array[i].wind.deg}deg);" src='./src/wind_arrow/arrow.png'>`
         return divWindDirection;
     }
 
@@ -107,7 +108,8 @@ class Forecast {
         let divDay;
         for (let i = 0; array.length; i++){
             divDay = document.createElement('div');
-            divDay.className = 'day';
+            if (i=== 0) {divDay.className = 'day row';}
+            else {divDay.className = 'day row';}
             divDay.insertBefore(this.getDate(array, i), null);
             divDay.insertBefore(this.getIconWeather(array, i), null);
             divDay.insertBefore(this.getIconWeatherDescription(array, i), null);
@@ -118,19 +120,19 @@ class Forecast {
             divDay.insertBefore(this.getWindDirection(array, i), null);
             forecastConditions.appendChild(divDay);
         }
-    }
-    
 
+    }
 
     //sending API call 
    apiCall (setURL) {
         fetch(setURL)
         .then(res => res.json())
-        .then(data => { 
-            let array = data.list;
+        .then(data => data.list)
+        .then(array => { 
             console.log(array);
             this.getForecast(array);
         })
+        .catch(err => console.log(err))
 
     }
 }

@@ -197,32 +197,17 @@ body {
 
 
 #forecast {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  width: 100%;
-  border: 1px solid green;
-
-}
-
-.date,
-.icon,
-.description,
-.temp,
-.pressure,
-.humidity,
-.wind,
-.windDirection {
-  width: auto;
-  font-size: 1rem;
-  border: 1px solid green;
+  height:50vh;
+  overflow: scroll;
 }
 
 .day {
-  border: 1px solid green;
+  font-size: 1rem;
+  border-bottom: 1px solid green;
   display: flex;
   align-items: center;
 }
+
 
 @media (max-width: 678px) {
   #searchForm {
