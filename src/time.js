@@ -87,8 +87,13 @@ export class TimeInPlace {
 }
 
 function creatClockAn(time,timer){
+    const wrapC = document.querySelector(`.clock${timer}`);
+    wrapC.classList.toggle('clockAnalog');
+    wrapC.classList.remove('clockDigit');
     const wrapM = document.querySelector(`${timer} .minutes`);
     const wrapH = document.querySelector(`${timer} .hours`);
+    wrapH.innerHTML = '';
+    wrapM.innerHTML = '';
     const rotateH = (30 * time.hours);
     const rotateM = (6 * time.minutes);
     if(time.hours === 12 || time.hours === 24){
@@ -101,7 +106,27 @@ function creatClockAn(time,timer){
     } else {
         wrapM.style.transform = `rotate(${rotateM}deg)`;
     }
-    
-    // time.hours time.minutes
 }
- export {getTimeZone, creatClockAn }
+function creatClockDigital(time,timer){
+    const wrapC = document.querySelector(`.clock${timer}`);
+    wrapC.classList.toggle('clockDigit');
+    wrapC.classList.remove('clockAnalog');  
+    const wrapM = document.querySelector(`${timer} .minutes`);
+    const wrapH = document.querySelector(`${timer} .hours`);
+    if(time.hours === 12 || time.hours === 24){
+        wrapH.innerHTML = `${time.hours}`;
+    } else {
+        wrapH.innerHTML = `${time.hours}`; 
+    }
+    if(time.minutes == 0){
+        wrapM.innerHTML = `${time.minutes}`;
+    } else {
+        wrapM.innerHTML = `${time.minutes}`;
+    }
+}
+function clockDisplay(time,clock){
+    clock(time.currentTime,'.timer1');
+    clock(time.inOtherPlace,'.timer2');
+}
+
+ export {getTimeZone, creatClockAn, creatClockDigital, clockDisplay }
