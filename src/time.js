@@ -82,47 +82,63 @@ export class TimeInPlace {
 
 function creatClockAn(time,timer){
     const wrapC = document.querySelector(`.clock${timer}`);
-    if(wrapC.classList.contains('clockAnalog') === false)
-        wrapC.classList.add('clockAnalog');
-    wrapC.classList.remove('clockDigit');
     const wrapM = document.querySelector(`${timer} .minutes`);
     const wrapH = document.querySelector(`${timer} .hours`);
+
+    changeClass(wrapC,wrapM,wrapH,'clockAnalog','minutesAnalog','hoursAnalog');
+    wrapC.classList.remove('clockDigit');
+
     wrapH.innerHTML = '';
     wrapM.innerHTML = '';
     const rotateH = (30 * time.hours);
     const rotateM = (6 * time.minutes);
+
     if(time.hours === 12 || time.hours === 24){
-        wrapH.style.transform = `rotate(0deg)`;
+        wrapH.setAttribute('style', 'transform: rotate(0deg)');
     } else {
-        wrapH.style.transform = `rotate(${rotateH}deg)`; 
+        wrapH.setAttribute('style', `transform: rotate(${rotateH}deg)`);
     }
     if(time.minutes == 0){
-        wrapM.style.transform = `rotate(0deg)`;
+        wrapM.setAttribute('style', 'transform: rotate(0deg)');
     } else {
-        wrapM.style.transform = `rotate(${rotateM}deg)`;
+        wrapM.setAttribute('style', `transform: rotate(${rotateM}deg)`);
     }
 }
+
 function creatClockDigital(time,timer){
     const wrapC = document.querySelector(`.clock${timer}`);
-    if(wrapC.classList.contains('clockDigit') === false)
-        wrapC.classList.add('clockDigit');
-    wrapC.classList.remove('clockAnalog');  
     const wrapM = document.querySelector(`${timer} .minutes`);
     const wrapH = document.querySelector(`${timer} .hours`);
+
+    changeClass(wrapC,wrapM,wrapH,'clockDigit','minutesDigits','hoursDigits');
+    wrapC.classList.remove('clockAnalog');  
+
     if(time.hours === 12 || time.hours === 24){
+        wrapH.setAttribute('style', 'transform: rotate(0deg)');
         wrapH.innerHTML = `${time.hours}`;
     } else {
+        wrapH.setAttribute('style', 'transform: rotate(0deg)');
         wrapH.innerHTML = `${time.hours}`; 
     }
     if(time.minutes == 0){
+        wrapM.setAttribute('style', 'transform: rotate(0deg)');
         wrapM.innerHTML = `${time.minutes}`;
     } else {
+        wrapM.setAttribute('style', 'transform: rotate(0deg)');
         wrapM.innerHTML = `${time.minutes}`;
     }
 }
 function clockDisplay(time,clock){
     clock(time.currentTime,'.timer1');
     clock(time.inOtherPlace,'.timer2');
+}
+function changeClass(wrapC,wrapM,wrapH,nameClock,nameM,nameH){
+    if(wrapC.classList.contains(`${nameClock}`) === false)
+        wrapC.classList.add(`${nameClock}`);
+    if(wrapM.classList.contains(`${nameM}`) === false)
+        wrapM.classList.add(`${nameM}`);
+    if(wrapH.classList.contains(`${nameH}`) === false)
+        wrapH.classList.add(`${nameH}`);
 }
 
  export {getTimeZone, creatClockAn, creatClockDigital, clockDisplay }
