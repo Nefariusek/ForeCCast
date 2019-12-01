@@ -113,20 +113,14 @@ $Time-background-color-clock: rgb(2, 53, 2);
       display: flex;
       background-color: black;
       box-sizing: border-box;
-      line-height: 2rem;
+      line-height: 1.5rem;
       font-size: 1rem;
       border-radius: 0%;
       border: 3px solid grey;
       font-family: 'digitalPlay', 'minisystem', 'bpdotsunicaseregular', helvetica, sans-serif;
       text-align: center;
-      .hoursDigits {
-        color:red;
-        transform: none;//rotate(0deg);
-      }
-      .minutesDigits {
-        color:red;
-        transform: rotate(0deg);
-      }
+      color:red;
+      padding: 2%;
       .hand {
         transform-origin: none;
       }

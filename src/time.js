@@ -110,35 +110,38 @@ function creatClockDigital(time,timer){
     const wrapM = document.querySelector(`${timer} .minutes`);
     const wrapH = document.querySelector(`${timer} .hours`);
 
-    changeClass(wrapC,wrapM,wrapH,'clockDigit','minutesDigits','hoursDigits');
-    wrapC.classList.remove('clockAnalog');  
+    changeClass(wrapC,wrapM,wrapH,'clockDigit','minutesDigits','hoursDigits','clockAnalog','minutesAnalog','hoursAnalog');
+
 
     if(time.hours === 12 || time.hours === 24){
         wrapH.setAttribute('style', 'transform: rotate(0deg)');
-        wrapH.innerHTML = `${time.hours}`;
+        wrapH.innerHTML = `${time.hours}:`;
     } else {
         wrapH.setAttribute('style', 'transform: rotate(0deg)');
-        wrapH.innerHTML = `${time.hours}`; 
+        wrapH.innerHTML = `${time.hours < 10 ? '0'+time.hours : time.hours }:`; 
     }
     if(time.minutes == 0){
         wrapM.setAttribute('style', 'transform: rotate(0deg)');
-        wrapM.innerHTML = `${time.minutes}`;
+        wrapM.innerHTML = `${time.minutes < 10 ? '0'+ time.minutes : time.minutes}`;
     } else {
         wrapM.setAttribute('style', 'transform: rotate(0deg)');
-        wrapM.innerHTML = `${time.minutes}`;
+        wrapM.innerHTML = `${time.minutes < 10 ? '0'+ time.minutes : time.minutes}`;
     }
 }
 function clockDisplay(time,clock){
     clock(time.currentTime,'.timer1');
     clock(time.inOtherPlace,'.timer2');
 }
-function changeClass(wrapC,wrapM,wrapH,nameClock,nameM,nameH){
+function changeClass(wrapC, wrapM, wrapH, nameClock, nameM, nameH, removeNameC, removeNameM, removeNameH){
     if(wrapC.classList.contains(`${nameClock}`) === false)
         wrapC.classList.add(`${nameClock}`);
     if(wrapM.classList.contains(`${nameM}`) === false)
         wrapM.classList.add(`${nameM}`);
     if(wrapH.classList.contains(`${nameH}`) === false)
         wrapH.classList.add(`${nameH}`);
+    wrapC.classList.remove(`${removeNameC}`);  
+    wrapM.classList.remove(`${removeNameM}`);  
+    wrapH.classList.remove(`${removeNameH}`);  
 }
 
  export {getTimeZone, creatClockAn, creatClockDigital, clockDisplay }
