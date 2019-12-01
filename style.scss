@@ -53,6 +53,7 @@ body {
 
 #logo {
   width: 100%;
+  height: auto;
   margin: 0;
 }
 
@@ -307,8 +308,11 @@ body {
   flex-direction: column;
   font-size: 1rem;
   flex:1;
+  padding: 10px;
+
   .handelCurrency{
     display: flex;
+    padding: 4px;
     i{
       text-align: center;
       line-height: 2rem;
@@ -320,6 +324,7 @@ body {
     }
     b {
       line-height: 2rem;
+      padding-left: 4px;
       text-align: left;
       color: black;
     }

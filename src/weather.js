@@ -87,6 +87,7 @@ class Weather {
             <div class="col"><img style = "width:55%; transform:rotate(${data.wind.deg}deg);" src='./src/wind_arrow/arrow.png'></div></div>
            `;
         backgroundChange.style.background = `url(${this.setBackgroundPicture(data.weather[0].id)}) center fixed`;
+        backgroundChange.style.backgroundSize = 'cover';
       });
   }
 }
