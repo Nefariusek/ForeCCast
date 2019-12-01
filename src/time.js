@@ -82,7 +82,8 @@ export class TimeInPlace {
 
 function creatClockAn(time,timer){
     const wrapC = document.querySelector(`.clock${timer}`);
-    wrapC.classList.toggle('clockAnalog');
+    if(wrapC.classList.contains('clockAnalog') === false)
+        wrapC.classList.add('clockAnalog');
     wrapC.classList.remove('clockDigit');
     const wrapM = document.querySelector(`${timer} .minutes`);
     const wrapH = document.querySelector(`${timer} .hours`);
@@ -103,7 +104,8 @@ function creatClockAn(time,timer){
 }
 function creatClockDigital(time,timer){
     const wrapC = document.querySelector(`.clock${timer}`);
-    wrapC.classList.toggle('clockDigit');
+    if(wrapC.classList.contains('clockDigit') === false)
+        wrapC.classList.add('clockDigit');
     wrapC.classList.remove('clockAnalog');  
     const wrapM = document.querySelector(`${timer} .minutes`);
     const wrapH = document.querySelector(`${timer} .hours`);
