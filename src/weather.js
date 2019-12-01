@@ -29,43 +29,37 @@ class Weather {
     }
     //background picture change
     setBackgroundPicture (weatherConditionId) {
-        switch (weatherConditionId){
-            case weatherConditionId>=200 && weatherConditionId<=232:
+        //console.log(weatherConditionId);
+        if(weatherConditionId>=200 && weatherConditionId<=232){
                 this.backgroundPicture = thunderstormSrc;
-                break;
-            case weatherConditionId>=300 && weatherConditionId<=321:
+            }else if(weatherConditionId>=300 && weatherConditionId<=321){
                 this.backgroundPicture = drizzleSrc;
-                break;
-            case weatherConditionId>=500 && weatherConditionId<=531:
+            }else if(weatherConditionId>=500 && weatherConditionId<=531){
                 this.backgroundPicture = rainSrc;
-                break;
-            case weatherConditionId>=600 && weatherConditionId<=622:
+            }else if(weatherConditionId>=600 && weatherConditionId<=622){
                 this.backgroundPicture = snowSrc;
-                break;
-            case 701 || 711|| 721 || 741:
+            }else if( weatherConditionId==701 || weatherConditionId==711|| weatherConditionId==721 || weatherConditionId==741){
                 this.backgroundPicture = fogSrc;
-                break;
-            case 800:
+            }else if( weatherConditionId==800){
                 this.backgroundPicture = clearSrc;
-                break;
-            case 801:
+            }else if(weatherConditionId==801){
                 this.backgroundPicture = few_cloudsSrc;
-                break;
-            case 781 || 771 :
+            }else if(weatherConditionId==781 || weatherConditionId==771 ){
                 this.backgroundPicture = tornadoSrc;
-                break;
-            case 761 || 751 || 731 :
+            }else if(weatherConditionId==761 ||weatherConditionId==751 || weatherConditionId==731 ){
                 this.backgroundPicture = dustSrc;
-                break;
-            case weatherConditionId>801 && weatherConditionId<=804:
+            }else if(weatherConditionId>801 && weatherConditionId<=804){
                 this.backgroundPicture = overcast_cloudsSrc;
-                break;
-            default:
+            }else{
                 this.backgroundPicture =  clearSrc;
-                break;
-        }
-
+            }
+        
+        //console.log(this.backgroundPicture);
         return this.backgroundPicture;
+
+      
+
+
     }
     //set coordinates value
     getCoordinates(lat, lng) {
