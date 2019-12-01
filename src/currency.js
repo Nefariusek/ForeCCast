@@ -9,8 +9,9 @@ const apiReq = {
 const requestURLConvert = 'https://currency-converter5.p.rapidapi.com/currency/historical/';
 const nowT = Date.now();
 const currentDate =
-  '' + new Date(nowT).getUTCFullYear() + '-' + new Date(nowT).getUTCMonth() + '-' + new Date(nowT).getUTCDay(); //'2019-11-21';
-const sing = ['€', '₣', '$', '¥'];
+  '' + new Date(nowT).getUTCFullYear() + '-' + new Date(nowT).getUTCMonth() + '-' + new Date(nowT).getDate(); //'2019-11-21';
+const sing = ['€', '£', '$', '¥'];
+const signIcon = ['fa-euro-sign', 'fa-pound-sign', 'fa-dollar-sign', 'fa-yen-sign'];
 async function getCurrencyData(countryCode) {
   return await fetch(requestURL + countryCode)
     .then(function(res) {
@@ -74,25 +75,27 @@ export class Currency {
       .catch(err => {
         console.log(err);
       });
+
     // example: currency_name: "Euro" rate: "0.2386" rate_for_amount: "0.2386"
   }
-  async getConvertMultipleCurrencies() {
+  async getConvertMultipleCurrencies(){
     await this.getConvertedCurrency();
-    await this.getConvertedCurrency(this.code, 'chf');
-    await this.getConvertedCurrency(this.code, 'usd');
-    await this.getConvertedCurrency(this.code, 'jpy');
+    await this.getConvertedCurrency(this.code,'gbp');
+    await this.getConvertedCurrency(this.code,'usd');
+    await this.getConvertedCurrency(this.code,'jpy');
   }
   conCurrencyRemove() {
     this.convName = [];
     this.convRate = [];
   }
-  insertCurrency(wrap) {
-    let s = '';
-    for (let i = 0; i < this.convName.length; i++) {
-      s += `<b>${this.convName[i]}</b>: <span class="rate">${this.convRate[i]}${sing[i]}</span><br>`;
-    }
-    wrap.innerHTML = `<h4>Currency in searching city:</h4>
-      <b>${this.name}</b>:<br><span class="rate"> ${this.code} [1 ${this.symbol}]</span> <br>
+  insertCurrency(wrap){
+      let s = '';
+      for(let i = 0; i < this.convName.length; i++){
+         s += `<span class="handelCurrency"><i class="fas ${signIcon[i]}"></i><b>${this.convName[i]}:</b> <span class="rate">${this.convRate[i]}${sing[i]}</span><br></span>`;
+      } 
+      wrap.innerHTML = `<h4>Currency in searching city:</h4><br>
+      <span class="handelCurrency"><i class="fas fa-money-bill-wave"></i>
+      <b>${this.name}:</b><span class="rate"> ${this.code} [1 ${this.symbol}]</span></span> <br>
       ${s}<br> `;
   }
   async createCurrency(city, wrapCu) {
@@ -105,10 +108,6 @@ export class Currency {
   async initCurrency(countryCode) {
     const currency = new Currency();
     await currency.updateCurrency(countryCode);
-    // if(currency.getCurrencyCode() !== 'none' && currency.getCurrencyName !== 'none' && currency.getCurrencySymbol !== 'none')
-    //     console.log('Update currency',currency);
-    // else
-    //     console.log("Error: initCurrency: values none");
     this.name = currency.name;
     this.symbol = currency.symbol;
     this.code = currency.code;
