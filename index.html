@@ -22,6 +22,8 @@
   <link rel="stylesheet" href="./src/map/jquery-jvectormap-2.0.3.css" type="text/css" media="screen" />
   <script defer src="./src/map/jquery-jvectormap-2.0.3.min.js"></script>
   <script defer src="./src/map/jquery-jvectormap-world-mill-en.js"></script>
+  <link rel="stylesheet" href="./src/css/stylesheet.css" type="text/css" charset="utf-8" />
+  <script src="https://kit.fontawesome.com/a1c40aa33d.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -77,19 +79,24 @@
 
       <div class="time currency card  order-xl-first col-10 col-md-5 col-xl-3 p-2 mb-3">
         <div class="time-wrap">
-          <div class="clock timer1">
-            <span class="hand minutes"></span>
+          <div class="clock clockAnalog timer1">
             <span class="hand hours"></span>
+            <a class="simple"></a>
+            <span class="hand minutes"></span>
             <span id="timer1" class="time-in">time</span>
           </div>
-          <div class="clock timer2">
-            <span class="hand minutes"></span>
+          <div class="clock clockAnalog timer2">
             <span class="hand hours"></span>
+            <a class="simple"></a>
+            <span class="hand minutes"></span>
             <span id="timer2" class="time-in">time</span>
           </div>
+          <i class="fas fa-history"></i>
         </div>
         <div id="time"> </div>
-        <div class="currency-wrap" id="currency"> </div>
+        <div id="currency">
+          
+        </div>
       </div>
 
       <div class="news card col-10 col-md-5 col-xl-3 p-2 mb-3">

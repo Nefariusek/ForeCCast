@@ -6,8 +6,10 @@ const apiReq = {  "method": "GET",
                 }
 const requestURLConvert = 'https://currency-converter5.p.rapidapi.com/currency/historical/';
 const nowT = Date.now();
-const currentDate = ''+ new Date(nowT).getUTCFullYear() +'-'+ new Date(nowT).getUTCMonth()+'-'+ new Date(nowT).getUTCDay(); //'2019-11-21';
-const sing = ['€', '₣', '$', '¥'];
+const currentDate = ''+ new Date(nowT).getUTCFullYear() +'-'+ new Date(nowT).getUTCMonth()+'-'+ new Date(nowT).getDate(); //'2019-11-21';
+const sing = ['€', '£', '$', '¥'];
+const signIcon = ['fa-euro-sign', 'fa-pound-sign', 'fa-dollar-sign', 'fa-yen-sign'];
+
 async function getCurrencyData(countryCode){
     return await fetch(requestURL + countryCode)
    .then(function(res){ if(res.status === 200) return res.json(); })
@@ -69,7 +71,7 @@ export class Currency{
     }
    async getConvertMultipleCurrencies(){
       await this.getConvertedCurrency();
-      await this.getConvertedCurrency(this.code,'chf');
+      await this.getConvertedCurrency(this.code,'gbp');
       await this.getConvertedCurrency(this.code,'usd');
       await this.getConvertedCurrency(this.code,'jpy');
     }
@@ -80,10 +82,11 @@ export class Currency{
    insertCurrency(wrap){
       let s = '';
       for(let i = 0; i < this.convName.length; i++){
-         s += `<b>${this.convName[i]}</b>: <span class="rate">${this.convRate[i]}${sing[i]}</span><br>`;
+         s += `<span class="handelCurrency"><i class="fas ${signIcon[i]}"></i><b>${this.convName[i]}:</b> <span class="rate">${this.convRate[i]}${sing[i]}</span><br></span>`;
       } 
-      wrap.innerHTML = `<h4>Currency in searching city:</h4>
-      <b>${this.name}</b>:<br><span class="rate"> ${this.code} [1 ${this.symbol}]</span> <br>
+      wrap.innerHTML = `<h4>Currency in searching city:</h4><br>
+      <span class="handelCurrency"><i class="fas fa-money-bill-wave"></i>
+      <b>${this.name}:</b><span class="rate"> ${this.code} [1 ${this.symbol}]</span></span> <br>
       ${s}<br> `
   }
   async createCurrency(city,wrapCu){
