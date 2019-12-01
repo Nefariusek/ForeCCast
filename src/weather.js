@@ -13,83 +13,82 @@ const weatherConditions = document.querySelector('#weather');
 const backgroundChange = document.querySelector('body');
 
 class Weather {
-    constructor (lat, lon){
-        this.lat = lat;
-        this.lon = lon;
-        this.backgroundPicture = clearSrc;
-        
-    }
-    //set lat value
-    setLat(value) {
-        return this.lat=value;
-    } 
-    //set lon value
-    setLon(value){
-        return this.lon=value;
-    }
-    //background picture change
-    setBackgroundPicture (weatherConditionId) {
-        //console.log(weatherConditionId);
-        if(weatherConditionId>=200 && weatherConditionId<=232){
-                this.backgroundPicture = thunderstormSrc;
-            }else if(weatherConditionId>=300 && weatherConditionId<=321){
-                this.backgroundPicture = drizzleSrc;
-            }else if(weatherConditionId>=500 && weatherConditionId<=531){
-                this.backgroundPicture = rainSrc;
-            }else if(weatherConditionId>=600 && weatherConditionId<=622){
-                this.backgroundPicture = snowSrc;
-            }else if( weatherConditionId==701 || weatherConditionId==711|| weatherConditionId==721 || weatherConditionId==741){
-                this.backgroundPicture = fogSrc;
-            }else if( weatherConditionId==800){
-                this.backgroundPicture = clearSrc;
-            }else if(weatherConditionId==801){
-                this.backgroundPicture = few_cloudsSrc;
-            }else if(weatherConditionId==781 || weatherConditionId==771 ){
-                this.backgroundPicture = tornadoSrc;
-            }else if(weatherConditionId==761 ||weatherConditionId==751 || weatherConditionId==731 ){
-                this.backgroundPicture = dustSrc;
-            }else if(weatherConditionId>801 && weatherConditionId<=804){
-                this.backgroundPicture = overcast_cloudsSrc;
-            }else{
-                this.backgroundPicture =  clearSrc;
-            }
-        
-        //console.log(this.backgroundPicture);
-        return this.backgroundPicture;
-
-      
-
-
-    }
-    //set coordinates value
-    getCoordinates(lat, lng) {
-        this.setLat(lat);
-        this.setLon(lng);
-        return this.apiCall(this.setURL());
-    }
-    // set URL address for API call
-    setURL (){
-        let weatherApiKey = '47f83ac09c8aba4209901acd619fdb03';
-        let weatherApiURL = `https://api.openweathermap.org/data/2.5/weather?lat=${this.lat}&lon=${this.lon}&units=metric&APPID=${weatherApiKey}`;
-        return weatherApiURL;
+  constructor(lat, lon) {
+    this.lat = lat;
+    this.lon = lon;
+    this.backgroundPicture = clearSrc;
+  }
+  //set lat value
+  setLat(value) {
+    return (this.lat = value);
+  }
+  //set lon value
+  setLon(value) {
+    return (this.lon = value);
+  }
+  //background picture change
+  setBackgroundPicture(weatherConditionId) {
+    //console.log(weatherConditionId);
+    if (weatherConditionId >= 200 && weatherConditionId <= 232) {
+      this.backgroundPicture = thunderstormSrc;
+    } else if (weatherConditionId >= 300 && weatherConditionId <= 321) {
+      this.backgroundPicture = drizzleSrc;
+    } else if (weatherConditionId >= 500 && weatherConditionId <= 531) {
+      this.backgroundPicture = rainSrc;
+    } else if (weatherConditionId >= 600 && weatherConditionId <= 622) {
+      this.backgroundPicture = snowSrc;
+    } else if (
+      weatherConditionId == 701 ||
+      weatherConditionId == 711 ||
+      weatherConditionId == 721 ||
+      weatherConditionId == 741
+    ) {
+      this.backgroundPicture = fogSrc;
+    } else if (weatherConditionId == 800) {
+      this.backgroundPicture = clearSrc;
+    } else if (weatherConditionId == 801) {
+      this.backgroundPicture = few_cloudsSrc;
+    } else if (weatherConditionId == 781 || weatherConditionId == 771) {
+      this.backgroundPicture = tornadoSrc;
+    } else if (weatherConditionId == 761 || weatherConditionId == 751 || weatherConditionId == 731) {
+      this.backgroundPicture = dustSrc;
+    } else if (weatherConditionId > 801 && weatherConditionId <= 804) {
+      this.backgroundPicture = overcast_cloudsSrc;
+    } else {
+      this.backgroundPicture = clearSrc;
     }
 
-    //sending API call 
-   apiCall (setURL) {
-        fetch(setURL)
-        .then(res => res.json())
-        .then(data => { 
-            weatherConditions.innerHTML = `<img src='http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png'> <br>
-            Temperature: ${data.main.temp}°C  <br>
-           Pressure: ${data.main.pressure}hPa <br> 
-           Humidity: ${data.main.humidity}% <br>
-           Wind: ${data.wind.speed}km/h <br>
-           <img style = "width:15%; transform:rotate(${data.wind.deg}deg);" src='./src/wind_arrow/arrow.png'> <br>
+    //console.log(this.backgroundPicture);
+    return this.backgroundPicture;
+  }
+  //set coordinates value
+  getCoordinates(lat, lng) {
+    this.setLat(lat);
+    this.setLon(lng);
+    return this.apiCall(this.setURL());
+  }
+  // set URL address for API call
+  setURL() {
+    let weatherApiKey = '47f83ac09c8aba4209901acd619fdb03';
+    let weatherApiURL = `https://api.openweathermap.org/data/2.5/weather?lat=${this.lat}&lon=${this.lon}&units=metric&APPID=${weatherApiKey}`;
+    return weatherApiURL;
+  }
+
+  //sending API call
+  apiCall(setURL) {
+    fetch(setURL)
+      .then(res => res.json())
+      .then(data => {
+        weatherConditions.innerHTML = `<div class="weather row"><div class="col"><img src='http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png'></div>
+            <div class="col">Temperature: ${data.main.temp}°C</div>
+            <div class="col">Pressure: ${data.main.pressure}hPa</div> 
+            <div class="col">Humidity: ${data.main.humidity}%</div>
+            <div class="col">Wind: ${data.wind.speed}km/h</div>
+            <div class="col"><img style = "width:55%; transform:rotate(${data.wind.deg}deg);" src='./src/wind_arrow/arrow.png'></div></div>
            `;
-           backgroundChange.style.background = `url(${this.setBackgroundPicture(data.weather[0].id)}) center fixed`;
-        })
-
-    }
+        backgroundChange.style.background = `url(${this.setBackgroundPicture(data.weather[0].id)}) center fixed`;
+      });
+  }
 }
 
 export default Weather;

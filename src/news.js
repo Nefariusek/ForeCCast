@@ -8,11 +8,11 @@ class News {
   }
 
   setLanguage(language) {
-    return this.language = language;
+    return (this.language = language);
   }
 
-  setCountry(country){
-    return this.country = country;
+  setCountry(country) {
+    return (this.country = country);
   }
 
   getCountry(country, language) {
@@ -28,21 +28,20 @@ class News {
     return newsUrl;
   }
 
-  newsClick(articleUrl){
+  newsClick(articleUrl) {
     //console.log('Akcja reakcja');
-    window.open(`${articleUrl}`); 
+    window.open(`${articleUrl}`);
   }
 
-  getNews(newsArr){
-
-    if(!newsArr.totalResults){
+  getNews(newsArr) {
+    if (!newsArr.totalResults) {
       //console.log("we are out of news");
       this.divNews.innerHTML = `<h1>No news at the moment</h1>`;
-    }else{
+    } else {
       let newsImg;
       let divNewsText;
       let divNewsBox;
-      for(let i = 0; i < 5; i++){
+      for (let i = 0; i < 5; i++) {
         let article = i; //Math.floor(Math.random() * newsArr.articles.length);
         let title = newsArr.articles[article].title;
         let description = newsArr.articles[article].description;
@@ -51,40 +50,40 @@ class News {
 
         divNewsBox = document.createElement('div');
         divNewsBox.className = 'news-card card';
-        divNewsBox.addEventListener("click", () => {   
+        divNewsBox.addEventListener('click', () => {
           //console.log('Akcja reakcja');
-          window.open(`${articleUrl}`); 
+          window.open(`${articleUrl}`);
         });
         //console.log("Action listener created" + i);
-        if(!imgUrl){
-          imgUrl=imgUrlSrc;
+        if (!imgUrl) {
+          imgUrl = imgUrlSrc;
         }
         newsImg = document.createElement('img');
         newsImg.className = 'newsImg card-img-top';
         newsImg.src = `${imgUrl}`;
         divNewsBox.insertBefore(newsImg, null);
-        if(!title){
-          title = " ";
+        if (!title) {
+          title = ' ';
         }
-        if(!description){
-          description = " ";
+        if (!description) {
+          description = ' ';
         }
         divNewsText = document.createElement('div');
         divNewsText.className = 'newsText card-body';
-        divNewsText.innerHTML = `<h4 class="card-title">${title}</h4><p class="card-text">${description}</p>`
+        divNewsText.innerHTML = `<h4 class="card-title">${title}</h4><p class="card-text">${description}</p>`;
         divNewsBox.insertBefore(divNewsText, null);
         this.divNews.appendChild(divNewsBox);
       }
     }
   }
-  
-getNewsByCountry(newsUrl) {
-  fetch(newsUrl)
-    .then(res => res.json())
-    .then(data => {
-      let newsArr = data;
-      this.getNews(newsArr);
-    });
+
+  getNewsByCountry(newsUrl) {
+    fetch(newsUrl)
+      .then(res => res.json())
+      .then(data => {
+        let newsArr = data;
+        this.getNews(newsArr);
+      });
   }
 }
 
