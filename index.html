@@ -60,37 +60,42 @@
           <p>Current Weather</p>
           <div id="weather">id="weather"</div>
           <p>Forecast</p>
-           <div class="container" id="forecast"> </div>
+          <div class="container" id="forecast">
+          </div>
           <div>
-            <div id="sun-moon">
-              <h1>Astronomy Forecast:</h1>
-              <div class="header">
-                <button class="btn btn-warning mr-4" id="previousDay">&lt</button>
-                <div id="cityAndDate"></div>
-                <button class="btn btn-warning mr-4" id="nextDay">&gt</button>
-              </div id="header">
-              <div id="output"></div>
-            </div>
           </div>
         </div>
       </div>
 
-      <div class="time currency card  order-xl-first col-10 col-md-5 col-xl-3 p-2 mb-3">
-        <div class="time-wrap">
-          <div class="clock timer1">
-            <span class="hand minutes"></span>
-            <span class="hand hours"></span>
-            <span id="timer1" class="time-in">time</span>
+      <div id="clock-currency-sky-wrapper" class="  order-xl-first col-10 col-md-5 col-xl-3 p-2 mb-3">
+        <div class="time currency card">
+          <div class="time-wrap">
+            <div class="clock timer1">
+              <span class="hand minutes"></span>
+              <span class="hand hours"></span>
+              <span id="timer1" class="time-in">time</span>
+            </div>
+            <div class="clock timer2">
+              <span class="hand minutes"></span>
+              <span class="hand hours"></span>
+              <span id="timer2" class="time-in">time</span>
+            </div>
           </div>
-          <div class="clock timer2">
-            <span class="hand minutes"></span>
-            <span class="hand hours"></span>
-            <span id="timer2" class="time-in">time</span>
-          </div>
+          <div id="time"> </div>
+          <div class="currency-wrap" id="currency"> </div>
         </div>
-        <div id="time"> </div>
-        <div class="currency-wrap" id="currency"> </div>
+
+        <div id="sun-moon" class="card mt-4">
+          <h1>Astronomy Forecast:</h1>
+          <div class="header card mb-2">
+            <button class="btn btn-warning" id="previousDay">&lt</button>
+            <div id="cityAndDate"></div>
+            <button class="btn btn-warning" id="nextDay">&gt</button>
+          </div id="header">
+          <div id="output"></div>
+        </div>
       </div>
+
 
       <div class="news card col-10 col-md-5 col-xl-3 p-2 mb-3">
         <h1>NEWS</h1>
