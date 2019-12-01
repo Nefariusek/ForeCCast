@@ -6,7 +6,8 @@ const apiReq = {  "method": "GET",
                 }
 const requestURLConvert = 'https://currency-converter5.p.rapidapi.com/currency/historical/';
 const nowT = Date.now();
-const currentDate = ''+ new Date(nowT).getUTCFullYear() +'-'+ new Date(nowT).getUTCMonth()+'-'+ new Date(nowT).getUTCDay(); //'2019-11-21';
+const currentDate = ''+ new Date(nowT).getUTCFullYear() +'-'+ new Date(nowT).getUTCMonth()+'-'+ new Date(nowT).getDate(); //'2019-11-21';
+console.log(currentDate);
 const sing = ['€', '£', '$', '¥'];
 const signIcon = ['fa-euro-sign', 'fa-pound-sign', 'fa-dollar-sign', 'fa-yen-sign'];
 
