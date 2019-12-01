@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'bpdotsunicaseregular';
+    src: url('BPdotsUnicase-webfont.eot');
+    src: url('BPdotsUnicase-webfont.eot?#iefix') format('embedded-opentype'),
+         url('BPdotsUnicase-webfont.woff2') format('woff2'),
+         url('BPdotsUnicase-webfont.woff') format('woff'),
+         url('BPdotsUnicase-webfont.ttf') format('truetype'),
+         url('BPdotsUnicase-webfont.svg#bpdotsunicaseregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  
+  }
+  @font-face
+  {
+    font-family: 'minisystem';
+    src:url('minisystem.otf');
+  }
+  @font-face{
+        font-family: 'digitalPlay';
+    src:url('DigitalPlaySt.ttf'); 
+  }

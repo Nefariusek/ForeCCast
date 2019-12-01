@@ -300,121 +300,37 @@ body {
     overflow: hidden;
   }
 }
-
-.time .currency {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: stretch;
-}
-
-#time {
-  display: flex;
-  flex: wrap;
-  font-size: 1rem;
-  background-color: rgba(50, 50, 50, 75);
-  padding: 2%;
-  color: white;
-  border-radius: 0 0 4px 4px;
-
-  .time-digits {
-    flex: 2;
-    text-align: center;
-  }
-
-  .time-text {
-    flex: 2;
-  }
-}
-
-.time-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  font-size: 1rem;
-  justify-content: space-around;
-  background-color: #044b15;
-  border: 1px solid #022e0c;
-  border-radius: 4px 4px 0 0;
-  padding: 2%;
-
-  .clock {
-    background-color: #f3faf5;
-    box-sizing: border-box;
-    width: 101px;
-    height: 101px;
-    padding: 4px;
-    border-radius: 50%;
-    border: 1px solid #208638;
-    transform: rotate(0deg);
-    background-image: url('https://cssanimation.rocks/images/posts/clocks/ios_clock.svg');
-    background-size: contain;
-    background-repeat: space;
-    background-origin: content-box;
-    background-position: center;
-
-    .hours {
-      border: 3px solid #01330d;
-      position: absolute;
-      height: 30%;
-      border-radius: 18%;
-      left: 48%;
-      bottom: 50%;
-    }
-
-    .minutes {
-      border: 1px solid #000702;
-      position: absolute;
-      height: 35%;
-      border-radius: 18%;
-      left: 50%;
-      bottom: 50%;
-    }
-
-    .hand {
-      transform-origin: bottom center;
-    }
-
-    .time-in {
-      box-sizing: border-box;
-      font-size: 0.7rem;
-      position: relative;
-      padding: 1%;
-      color: white;
-      background-color: #01330d;
-      border: 1px solid #001805;
-      text-align: center;
-      left: 35%;
-      top: 60%;
-    }
-  }
-}
-
-.currency-wrap {
-  // display: flex;
-  // flex-wrap: wrap;
-  // flex-direction: column;
-  // justify-content: center;
-}
+@import './clockStyle';
 
 #currency {
+  display: flex;
+  flex-direction: column;
   font-size: 1rem;
-  margin: auto;
-
-  b {
-    text-align: left;
-    color: black;
-  }
-
-  .rate {
-    color: rgb(83, 83, 83);
+  flex:1;
+  .handelCurrency{
+    display: flex;
+    i{
+      text-align: center;
+      line-height: 2rem;
+      width: 2rem;
+      padding: auto;
+      background: radial-gradient(circle farthest-corner,rgba(255, 255, 255, 0.7),rgba(250, 250, 250, 0));
+      border-radius: 50%;
+      color: rgb(1, 3, 160);
+    }
+    b {
+      line-height: 2rem;
+      text-align: left;
+      color: black;
+    }
+    .rate {
+      flex:1;
+      justify-content: flex-start;
+      line-height: 2rem;
+      color: rgb(1, 3, 160);
+      // color: rgb(83, 83, 83);
+      text-align: right;
+    }
   }
 }
 
-// @keyframes rotateClock {
-//   from {
-//     transform: rotate(0deg);
-//   }to{
-//     transform: rotate(360deg);
-//   }
-// }

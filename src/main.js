@@ -6,8 +6,9 @@ import AstronomyForecast from './astronomyForecast.js';
 import { getUserLocation } from './userLocation';
 import Forecast from './forecast';
 import map from './map/map';
-import { Currency } from './currency';
-import { TimeInPlace, creatClockAn } from './time';
+import {Currency} from './currency'
+import {TimeInPlace, creatClockAn, creatClockDigital, clockDisplay} from './time'
+
 
 let defCity = {
   country: 'PL',
@@ -48,9 +49,11 @@ const wrapTim = document.getElementById('time');
 const wrapCu = document.getElementById('currency');
 const t = new TimeInPlace();
 const currency = new Currency();
+let clock = creatClockAn;
+t.createTime(city,wrapTim);
+clockDisplay(t,clock);
+currency.createCurrency(city,wrapCu);
 
-t.createTime(city, wrapTim);
-currency.createCurrency(city, wrapCu);
 
 // // Show info when the user clicks the button
 // document.getElementById('getText')
@@ -75,9 +78,9 @@ function reset(city) {
   weather.getCoordinates(city.lat, city.lng);
   forecast.getCoordinates(city.lat, city.lng);
   astronomyForecast.getCity(city.name, day);
-
-  t.createTime(city, wrapTim);
-  currency.createCurrency(city, wrapCu);
+  t.createTime(city,wrapTim);
+  clockDisplay(t,clock);
+  currency.createCurrency(city,wrapCu);
 }
 
 document.getElementById('myInput').addEventListener('keydown', function(event) {
@@ -106,12 +109,20 @@ document.getElementById('nextDay').addEventListener('click', function() {
   }
 });
 
-console.log('main.js ready to serve');
-creatClockAn(t.currentTime, '.timer1');
-creatClockAn(t.inOtherPlace, '.timer2');
+document.querySelector('.fas.fa-history').addEventListener('click', function(){
+    if(clock === creatClockAn)
+        clock = creatClockDigital;
+    else
+        clock = creatClockAn;
+    clockDisplay(t,clock);
+})
+
+clockDisplay(t,clock);
 setInterval(() => {
-  t.countTime();
-  t.insertTime(wrapTim);
-  creatClockAn(t.currentTime, '.timer1');
-  creatClockAn(t.inOtherPlace, '.timer2');
-}, 60000);
+    t.countTime();
+    t.insertTime(wrapTim);
+    clockDisplay(t,clock);
+}, 60000); 
+
+console.log('main.js ready to serve');
+
