@@ -73,17 +73,21 @@ class AstronomyForecast {
     fetch(setURL)
       .then(res => res.json())
       .then(data => {
-        let cityAndDate = `<h2>${data.astronomy.city}</h2>`; // Display City
+        let cityAndDate = `<h2>${data.astronomy.city}</h2>
+          <p>${data.astronomy.astronomy[this.day].utcTime.slice(1,10)}<p>`; // Display City
         
         let output = `
         <div>
-          <p>Date: ${data.astronomy.astronomy[this.day].utcTime.slice(1,10)}<p>
-          <p>Sunrise: ${data.astronomy.astronomy[this.day].sunrise}</p>
-          <p>Sunset: ${data.astronomy.astronomy[this.day].sunset}</p>
-          <p>Moonrise: ${data.astronomy.astronomy[this.day].moonrise}</p>
-          <p>Moonset: ${data.astronomy.astronomy[this.day].moonset}</p>
-          <p>Moon Phase: ${data.astronomy.astronomy[this.day].moonPhaseDesc}</p>
-          ${this.setMoonImg(data.astronomy.astronomy[this.day].moonPhaseDesc)}
+          <div class='sun card m-2 mb-4'>
+            <p>Sunrise: ${data.astronomy.astronomy[this.day].sunrise}</p>
+            <p>Sunset: ${data.astronomy.astronomy[this.day].sunset}</p>
+          </div>
+          <div class='moon card m-2'>
+            <p>Moonrise: ${data.astronomy.astronomy[this.day].moonrise}</p>
+            <p>Moonset: ${data.astronomy.astronomy[this.day].moonset}</p>
+            <p class='border-up'>Moon Phase: ${data.astronomy.astronomy[this.day].moonPhaseDesc}</p>
+            <div class='mb-4'>${this.setMoonImg(data.astronomy.astronomy[this.day].moonPhaseDesc)}</div>
+          </div>
         </div>
       `;
         document.getElementById('output').innerHTML = output;
