@@ -107,8 +107,8 @@ body {
   width: 48%;
 }
 
-.sugestionItem>div,
-.sugestionItem>div:hover {
+.sugestionItem > div,
+.sugestionItem > div:hover {
   padding: 3px 14px 2px 14px;
   color: lightgray;
   background-color: #145222;
@@ -195,7 +195,9 @@ body {
   }
 }
 
-#sun-moon {
+#sun-moon,
+.weather,
+.forecast {
   h1 {
     color: #ffc107;
     text-shadow: 2px 2px 3px black;
@@ -242,21 +244,23 @@ body {
   }
 }
 
-
-
 #forecast {
   height: 50vh;
   overflow-y: scroll;
-  border: 1px solid green;
 }
 
 .day {
   font-size: 1rem;
-  border-bottom: 1px solid green;
+  border-bottom: 2px rgb(68, 68, 68) solid;
   display: flex;
   align-items: center;
 }
 
+.weather {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
 
 @media (max-width: 678px) {
   #searchForm {
@@ -284,7 +288,6 @@ body {
     margin-bottom: 8px;
 
     .input-group-prepend {
-
       .input-group-text {
         width: 82px;
         height: 44px;
@@ -406,7 +409,6 @@ body {
   .rate {
     color: rgb(83, 83, 83);
   }
-
 }
 
 // @keyframes rotateClock {

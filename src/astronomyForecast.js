@@ -5,11 +5,11 @@ class AstronomyForecast {
   }
 
   setCity(city) {
-    return this.city = city;
+    return (this.city = city);
   }
 
   setDay(day) {
-    return this.day = day;
+    return (this.day = day);
   }
 
   getCity(city, day) {
@@ -30,8 +30,9 @@ class AstronomyForecast {
       '&app_code=' +
       appCode +
       '&product=forecast_astronomy' +
-      '&name='+ this.city;
-      // this.city;
+      '&name=' +
+      this.city;
+    // this.city;
     return Link;
   }
 
@@ -65,7 +66,11 @@ class AstronomyForecast {
         image = 'https://www.computerhope.com/jargon/e/error.gif';
     }
 
-    return '<img class="moonImg" src="' + image + '" alt="Moon Phase" width="200" height="200" style="border-radius:50%";"></img>';
+    return (
+      '<img class="moonImg" src="' +
+      image +
+      '" alt="Moon Phase" width="200" height="200" style="border-radius:50%";"></img>'
+    );
   }
 
   // Take and display info from API
@@ -74,8 +79,8 @@ class AstronomyForecast {
       .then(res => res.json())
       .then(data => {
         let cityAndDate = `<h2>${data.astronomy.city}</h2>
-          <p>${data.astronomy.astronomy[this.day].utcTime.slice(1,10)}<p>`; // Display City
-        
+          <p>${data.astronomy.astronomy[this.day].utcTime.slice(1, 10)}<p>`; // Display City
+
         let output = `
         <div>
           <div class='sun card m-2 mb-4'>
@@ -92,24 +97,23 @@ class AstronomyForecast {
       `;
         document.getElementById('output').innerHTML = output;
         document.getElementById('cityAndDate').innerHTML = cityAndDate;
-
       });
   }
 
   buttonStyle() {
-    let btn1 = document.getElementById("previousDay");
-    let btn2 = document.getElementById("nextDay");
-    
+    let btn1 = document.getElementById('previousDay');
+    let btn2 = document.getElementById('nextDay');
+
     if (this.day === 0) {
-      btn1.style.background = "transparent";
+      btn1.style.background = 'transparent';
     } else {
-      btn1.style.background = "#ffc107";
+      btn1.style.background = '#ffc107';
     }
 
     if (this.day === 7) {
-      btn2.style.background = "transparent";
+      btn2.style.background = 'transparent';
     } else {
-      btn2.style.background = "#ffc107";
+      btn2.style.background = '#ffc107';
     }
   }
 }
