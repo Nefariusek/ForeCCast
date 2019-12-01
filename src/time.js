@@ -1,8 +1,6 @@
 const requestURL = 'https://restcountries.eu/rest/v2/alpha/';
 const requestTime = 'http://api.timezonedb.com/v2.1/get-time-zone?key=K8YSTR0U8XTK&format=json&by=position&';
 
-var targetDate = new Date();
-var timestamp = targetDate.getTime()/1000 + targetDate.getTimezoneOffset() * 60; 
 
 async function getTimeZone(countryCode){
     const timeZone= await fetch(requestURL+countryCode)
@@ -11,10 +9,6 @@ async function getTimeZone(countryCode){
     .catch(() => { return 'none';});
     console.log(`Time zone: ${timeZone}`);
  }
-
-// const dt = '10:30:23';
-// Will display time in 10:30:23 format
-// let formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
 
 export class TimeInPlace {
     constructor(){
