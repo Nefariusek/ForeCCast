@@ -33,8 +33,8 @@ class Forecast {
   getDate(array, i) {
     let divDate;
     divDate = document.createElement('div');
-    divDate.className = `date col`;
-    divDate.appendChild(document.createTextNode(array[i].dt_txt.slice(0, 16)));
+    divDate.className = `date p-1 flex-fill`;
+    divDate.innerHTML = `<div class="d-flex justify-content-center">${array[i].dt_txt.slice(0, 16)}</div>`;
     return divDate;
   }
 
@@ -42,8 +42,8 @@ class Forecast {
   getIconWeather(array, i) {
     let divIconWeather;
     divIconWeather = document.createElement('div');
-    divIconWeather.className = `icon col`;
-    divIconWeather.innerHTML = `<img src='http://openweathermap.org/img/wn/${array[i].weather[0].icon}@2x.png'> <br>`;
+    divIconWeather.className = `icon p-1 flex-fill`;
+    divIconWeather.innerHTML = `<div class="d-flex justify-content-center"><img style = "max-width:65px; max-height:65px;" src='http://openweathermap.org/img/wn/${array[i].weather[0].icon}@2x.png'> <br></div>`;
     return divIconWeather;
   }
 
@@ -51,8 +51,8 @@ class Forecast {
   getIconWeatherDescription(array, i) {
     let divIconWeatherDescription;
     divIconWeatherDescription = document.createElement('div');
-    divIconWeatherDescription.className = `description col`;
-    divIconWeatherDescription.appendChild(document.createTextNode(array[i].weather[0].description));
+    divIconWeatherDescription.className = `description p-1 flex-fill`;
+    divIconWeatherDescription.innerHTML = `<div class="d-flex justify-content-center">${array[i].weather[0].description}</div>`;
     return divIconWeatherDescription;
   }
 
@@ -60,8 +60,8 @@ class Forecast {
   getTemp(array, i) {
     let divTemp;
     divTemp = document.createElement('div');
-    divTemp.className = `temp col`;
-    divTemp.appendChild(document.createTextNode(`${array[i].main.temp} °C`));
+    divTemp.className = `temp p-1 flex-fill`;
+    divTemp.innerHTML = `<div class="d-flex justify-content-center">${array[i].main.temp} °C</div>`;
     return divTemp;
   }
 
@@ -69,8 +69,8 @@ class Forecast {
   getPressure(array, i) {
     let divPressure;
     divPressure = document.createElement('div');
-    divPressure.className = `pressure col`;
-    divPressure.appendChild(document.createTextNode(`${array[i].main.pressure} hPa`));
+    divPressure.className = `pressure p-1 flex-fill`;
+    divPressure.innerHTML = `<div class="d-flex justify-content-center">${array[i].main.pressure} hPa</div>`;
     return divPressure;
   }
 
@@ -78,8 +78,8 @@ class Forecast {
   getHumidity(array, i) {
     let divHumidity;
     divHumidity = document.createElement('div');
-    divHumidity.className = `humidity col`;
-    divHumidity.appendChild(document.createTextNode(`${array[i].main.humidity} %`));
+    divHumidity.className = `humidity p-1 flex-fill`;
+    divHumidity.innerHTML = `<div class="d-flex justify-content-center">${array[i].main.humidity} %</div>`;
     return divHumidity;
   }
 
@@ -87,8 +87,8 @@ class Forecast {
   getWind(array, i) {
     let divWind;
     divWind = document.createElement('div');
-    divWind.className = `wind col`;
-    divWind.appendChild(document.createTextNode(`${array[i].wind.speed} m/s`));
+    divWind.className = `wind p-1 flex-fill`;
+    divWind.innerHTML = `<div class="d-flex justify-content-center">${array[i].wind.speed} m/s</div>`;
     return divWind;
   }
 
@@ -96,8 +96,8 @@ class Forecast {
   getWindDirection(array, i) {
     let divWindDirection;
     divWindDirection = document.createElement('div');
-    divWindDirection.className = `windDirection col`;
-    divWindDirection.innerHTML = `<img style = "width:100%; transform:rotate(${array[i].wind.deg}deg);" src='./src/wind_arrow/arrow.png'>`;
+    divWindDirection.className = `windDirection p-1 flex-fill`;
+    divWindDirection.innerHTML = `<div class="d-flex justify-content-center"><img style = "transform:rotate(${array[i].wind.deg}deg); max-width:40px; max-height:40px;" src='./src/wind_arrow/arrow.png'></div>`;
     return divWindDirection;
   }
 
@@ -106,9 +106,9 @@ class Forecast {
     for (let i = 0; array.length; i++) {
       divDay = document.createElement('div');
       if (i === 0) {
-        divDay.className = 'day row';
+        divDay.className = 'day d-flex flex-row flex-wrap justify-content-center align-items-center';
       } else {
-        divDay.className = 'day row';
+        divDay.className = 'day d-flex flex-row flex-wrap justify-content-center align-items-center';
       }
       divDay.insertBefore(this.getDate(array, i), null);
       divDay.insertBefore(this.getIconWeather(array, i), null);
@@ -128,7 +128,6 @@ class Forecast {
       .then(res => res.json())
       .then(data => data.list)
       .then(array => {
-        console.log(array);
         this.getForecast(array);
       })
       .catch(err => console.log(err));

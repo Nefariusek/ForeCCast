@@ -248,6 +248,10 @@ body {
   }
 }
 
+.date, .icon, .description, .temp, .pressure, .humidity, .wind, .windDirection{
+  flex: 1;
+}
+
 #forecast {
   height: 50vh;
   overflow-y: scroll;
@@ -256,16 +260,15 @@ body {
 .day {
   font-size: 1rem;
   border-bottom: 2px rgb(68, 68, 68) solid;
-  display: flex;
-  align-items: center;
 }
 
 .weather {
   font-size: 1rem;
-  display: flex;
-  align-items: center;
 }
 
+.col {
+  max-width: 125px;
+}
 @media (max-width: 678px) {
   #searchForm {
     flex-direction: column;

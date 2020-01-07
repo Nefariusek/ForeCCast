@@ -79,12 +79,13 @@ class Weather {
     fetch(setURL)
       .then(res => res.json())
       .then(data => {
-        weatherConditions.innerHTML = `<div class="weather row"><div class="col"><img src='http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png'></div>
-            <div class="col">Temperature: ${data.main.temp}°C</div>
-            <div class="col">Pressure: ${data.main.pressure}hPa</div> 
-            <div class="col">Humidity: ${data.main.humidity}%</div>
-            <div class="col">Wind: ${data.wind.speed}km/h</div>
-            <div class="col"><img style = "width:55%; transform:rotate(${data.wind.deg}deg);" src='./src/wind_arrow/arrow.png'></div></div>
+        weatherConditions.innerHTML = `<div class="d-flex flex-row flex-wrap justify-content-center align-items-center weather">
+        <div class="p-1 flex-fill"><div class="d-flex justify-content-center"><img style ="max-width:65px; max-height:65px;" src='http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png'></div></div>
+            <div class="p-1 flex-fill"><div class="d-flex justify-content-center">Temperature: ${data.main.temp}°C</div></div>
+            <div class="p-1 flex-fill"><div class="d-flex justify-content-center">Pressure: ${data.main.pressure}hPa</div></div>
+            <div class="p-1 flex-fill"><div class="d-flex justify-content-center">Humidity: ${data.main.humidity}%</div></div></br>
+            <div class="p-1 flex-fill"><div class="d-flex justify-content-center">Wind: ${data.wind.speed}m/s</div></div>
+            <div class="p-1 flex-fill"><div class="d-flex justify-content-center"><img style ="max-width:40px; max-height:40px; transform:rotate(${data.wind.deg}deg);" src='./src/wind_arrow/arrow.png'></div></div></div>
            `;
         backgroundChange.style.background = `url(${this.setBackgroundPicture(data.weather[0].id)}) center fixed`;
         backgroundChange.style.backgroundSize = 'cover';
